@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrawerTile extends StatelessWidget {
-  DrawerTile({
+  const DrawerTile({
     Key? key,
     // required this.imagePath,
     required this.textData,
@@ -12,7 +13,7 @@ class DrawerTile extends StatelessWidget {
   // final String imagePath;
   final String textData;
   final GestureTapCallback onTap;
-  double width;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class DrawerTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         color: Colors.transparent,
-        height: 40,
+        height: 30,
         width: double.maxFinite,
         margin: const EdgeInsets.only(top: 30),
         child: Row(
@@ -35,9 +36,7 @@ class DrawerTile extends StatelessWidget {
             // ),
             Text(
               textData,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 55, 204, 220),
-              ),
+              style: Get.textTheme.subtitle1,
             ),
           ],
         ),

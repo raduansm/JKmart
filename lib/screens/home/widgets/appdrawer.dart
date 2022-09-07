@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/screens/home/widgets/drawer_data.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -11,19 +11,16 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         padding: const EdgeInsets.fromLTRB(20, 110, 20, 0),
-        color: const Color.fromARGB(255, 243, 245, 243),
+        color: CustomColor.secondaryColor,
         child: Stack(
           children: <Widget>[
             Column(
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: const Text(
+                  child: Text(
                     'Mr. X',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Get.textTheme.headline4,
                   ),
                 ),
                 const Divider(

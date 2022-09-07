@@ -12,30 +12,30 @@ class CustomTheme {
         headline2: GoogleFonts.mulish(
           fontSize: 26,
           fontWeight: FontWeight.bold,
-          color: CustomColor.black,
+          color: CustomColor.white,
         ),
         headline4: GoogleFonts.mulish(
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          color: CustomColor.black,
+          color: CustomColor.white,
         ),
         headline5: GoogleFonts.mulish(
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: CustomColor.black,
+          color: CustomColor.white,
         ),
         headline6: GoogleFonts.mulish(
           fontSize: 14,
           fontWeight: FontWeight.bold,
-          color: CustomColor.black,
+          color: CustomColor.white,
         ),
         subtitle1: GoogleFonts.mulish(
           fontSize: 14,
-          color: CustomColor.black,
+          color: CustomColor.white,
         ),
         subtitle2: GoogleFonts.mulish(
           fontSize: 12,
-          color: CustomColor.black,
+          color: CustomColor.white,
         ),
         bodyText1: GoogleFonts.mulish(
           fontSize: 16,
