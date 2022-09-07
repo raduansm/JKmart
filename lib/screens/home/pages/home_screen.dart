@@ -102,7 +102,10 @@ class HomeScreen extends GetView<HomeController> {
                     children: [
                       const Text(
                         'Last 7 Days',
-                        style: TextStyle(color: CustomColor.secondaryColor, fontSize: 14, fontWeight: FontWeight.w200),
+                        style: TextStyle(
+                            color: CustomColor.secondaryColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w200),
                       ),
                       const SizedBox(
                         height: 2,
@@ -111,7 +114,10 @@ class HomeScreen extends GetView<HomeController> {
                         children: const [
                           Text(
                             '341.02',
-                            style: TextStyle(color: CustomColor.primaryColor, fontSize: 20, fontWeight: FontWeight.w400),
+                            style: TextStyle(
+                                color: CustomColor.primaryColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
                           ),
                           SizedBox(
                             width: 10,
@@ -123,7 +129,10 @@ class HomeScreen extends GetView<HomeController> {
                           ),
                           Text(
                             "11%",
-                            style: TextStyle(color: Colors.red, fontSize: 14, fontWeight: FontWeight.w200),
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w200),
                           ),
                         ],
                       ),
@@ -134,9 +143,17 @@ class HomeScreen extends GetView<HomeController> {
                     children: [
                       Column(
                         children: [
-                          Text("Avg day", style: Get.textTheme.bodyText1!.copyWith(color: CustomColor.secondaryColor, fontSize: 12, fontWeight: FontWeight.w100)),
+                          Text("Avg day",
+                              style: Get.textTheme.bodyText1!.copyWith(
+                                  color: CustomColor.secondaryColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w100)),
                           const SizedBox(height: 5),
-                          Text("17", style: Get.textTheme.bodyText1!.copyWith(color: CustomColor.primaryColor, fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text("17",
+                              style: Get.textTheme.bodyText1!.copyWith(
+                                  color: CustomColor.primaryColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ],
@@ -163,9 +180,12 @@ class HomeScreen extends GetView<HomeController> {
                       bottomTitles: AxisTitles(
                         sideTitles: controller.bottomTitles,
                       ),
-                      leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      leftTitles:
+                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      topTitles:
+                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      rightTitles:
+                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     ),
                   ),
                 ),

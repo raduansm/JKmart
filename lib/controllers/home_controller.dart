@@ -17,7 +17,10 @@ class HomeController extends GetxController {
   ];
 
   List<BarChartGroupData> chartGroups() {
-    return points.map((point) => BarChartGroupData(x: point.x.toInt(), barRods: [BarChartRodData(toY: point.y)])).toList();
+    return points
+        .map((point) => BarChartGroupData(
+            x: point.x.toInt(), barRods: [BarChartRodData(toY: point.y)]))
+        .toList();
   }
 
   SideTitles get bottomTitles => SideTitles(
@@ -25,47 +28,26 @@ class HomeController extends GetxController {
         getTitlesWidget: (value, meta) {
           String text = '';
           switch (value.toInt()) {
-            // case 0:
-            //   text = 'Saturday';
-            //   break;
-            // case 2:
-            //   text = 'Sunday';
-            //   break;
-            // case 4:
-            //   text = 'Monday';
-            //   break;
-            // case 6:
-            //   text = 'Tuesday';
-            //   break;
-            // case 8:
-            //   text = 'Wednesday';
-            //   break;
-            // case 10:
-            //   text = 'Thursday';
-            //   break;
-            // case 11:
-            //   text = 'Friday';
-            //   break;
-            case 0:
-              text = 'A';
-              break;
             case 1:
-              text = 'B';
+              text = 'Sun';
               break;
             case 2:
-              text = 'C';
+              text = 'Mon';
               break;
             case 3:
-              text = 'D';
+              text = 'Tue';
               break;
             case 4:
-              text = 'E';
+              text = 'Wed';
               break;
             case 5:
-              text = 'F';
+              text = 'Thu';
               break;
             case 6:
-              text = 'G';
+              text = 'Fri';
+              break;
+            case 7:
+              text = 'Sat';
               break;
           }
 
