@@ -12,7 +12,7 @@ class GlobalBottomButton extends StatelessWidget {
     required this.isSolidButton,
     this.isFirstIcon = true,
     this.size = 55,
-    this.color = CustomColor.pink,
+    this.color = CustomColor.secondaryColor,
     this.style,
     this.borderRaius = 10,
     this.space = 10,
@@ -52,7 +52,10 @@ class GlobalBottomButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (icon != null && isFirstIcon) icon! else Container(),
-          if (icon != null && isFirstIcon) SizedBox(width: space) else Container(),
+          if (icon != null && isFirstIcon)
+            SizedBox(width: space)
+          else
+            Container(),
           Text(
             text,
             // ignore: prefer_if_null_operators
@@ -62,7 +65,10 @@ class GlobalBottomButton extends StatelessWidget {
                     ? Get.textTheme.button
                     : Get.textTheme.button?.copyWith(color: Colors.black),
           ),
-          if (icon != null && !isFirstIcon) SizedBox(width: space) else Container(),
+          if (icon != null && !isFirstIcon)
+            SizedBox(width: space)
+          else
+            Container(),
           if (icon != null && !isFirstIcon) icon! else Container(),
         ],
       ),
