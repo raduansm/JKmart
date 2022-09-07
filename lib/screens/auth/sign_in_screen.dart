@@ -5,6 +5,7 @@ import 'package:jkmart/controllers/auth_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/core/widgets/global_bottom_button.dart';
 import 'package:jkmart/core/widgets/global_text_field.dart';
+import 'package:jkmart/screens/home/home_screen.dart';
 import 'package:lottie/lottie.dart';
 
 class SignInScreen extends GetView<AuthController> {
@@ -40,7 +41,10 @@ class SignInScreen extends GetView<AuthController> {
               TextSpan(
                 children: [
                   const TextSpan(text: 'Please '),
-                  TextSpan(text: 'sign in ', style: Get.textTheme.headline5?.copyWith(color: CustomColor.blue)),
+                  TextSpan(
+                      text: 'sign in ',
+                      style: Get.textTheme.headline5
+                          ?.copyWith(color: CustomColor.blue)),
                   const TextSpan(text: 'first to continue '),
                 ],
               ),
@@ -56,7 +60,8 @@ class SignInScreen extends GetView<AuthController> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              controller.selectedUserType.value = controller.userTypes[index];
+                              controller.selectedUserType.value =
+                                  controller.userTypes[index];
                               Get.back();
                             },
                             child: ListTile(
@@ -119,14 +124,15 @@ class SignInScreen extends GetView<AuthController> {
               child: Text(
                 'Forgot password?',
                 textAlign: TextAlign.center,
-                style: Get.textTheme.headline6?.copyWith(color: CustomColor.blue),
+                style:
+                    Get.textTheme.headline6?.copyWith(color: CustomColor.blue),
               ),
             ),
             const SizedBox(height: 20),
             GlobalBottomButton(
                 onPressed: () {
                   // controller.signIn();
-                  // Get.to(() => const HomeScreen());
+                  Get.to(() => const HomeScreen());
                 },
                 text: 'Sign in',
                 isSolidButton: true),
