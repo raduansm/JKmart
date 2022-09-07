@@ -14,6 +14,7 @@ class SignInScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColor.primaryColor,
       body: Obx(
         () => ListView(
           physics: const BouncingScrollPhysics(),
@@ -41,10 +42,7 @@ class SignInScreen extends GetView<AuthController> {
               TextSpan(
                 children: [
                   const TextSpan(text: 'Please '),
-                  TextSpan(
-                      text: 'sign in ',
-                      style: Get.textTheme.headline5
-                          ?.copyWith(color: CustomColor.blue)),
+                  TextSpan(text: 'sign in ', style: Get.textTheme.headline5?.copyWith(color: CustomColor.blue)),
                   const TextSpan(text: 'first to continue '),
                 ],
               ),
@@ -60,8 +58,7 @@ class SignInScreen extends GetView<AuthController> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              controller.selectedUserType.value =
-                                  controller.userTypes[index];
+                              controller.selectedUserType.value = controller.userTypes[index];
                               Get.back();
                             },
                             child: ListTile(
@@ -124,34 +121,34 @@ class SignInScreen extends GetView<AuthController> {
               child: Text(
                 'Forgot password?',
                 textAlign: TextAlign.center,
-                style:
-                    Get.textTheme.headline6?.copyWith(color: CustomColor.blue),
+                style: Get.textTheme.headline6?.copyWith(color: CustomColor.blue),
               ),
             ),
             const SizedBox(height: 20),
             GlobalBottomButton(
-                onPressed: () {
-                  // controller.signIn();
-                  Get.to(() => const HomeScreen());
-                },
-                text: 'Sign in',
-                isSolidButton: true),
-            const SizedBox(height: 20),
-            Text(
-              'Don’t have an account yet?',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.mulish(
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 20),
-            GlobalBottomButton(
-              text: 'Register yourself',
               onPressed: () {
-                // Get.to(const SignUpScreen(), binding: InitialBinding());
+                // controller.signIn();
+                Get.to(() => const HomeScreen());
               },
-              isSolidButton: false,
+              text: 'Sign in',
+              isSolidButton: true,
             ),
+            const SizedBox(height: 20),
+            // Text(
+            //   'Don’t have an account yet?',
+            //   textAlign: TextAlign.center,
+            //   style: GoogleFonts.mulish(
+            //     fontSize: 16,
+            //   ),
+            // ),
+            // const SizedBox(height: 20),
+            // GlobalBottomButton(
+            //   text: 'Register yourself',
+            //   onPressed: () {
+            //     // Get.to(const SignUpScreen(), binding: InitialBinding());
+            //   },
+            //   isSolidButton: false,
+            // ),
             const SizedBox(height: 30),
           ],
         ),

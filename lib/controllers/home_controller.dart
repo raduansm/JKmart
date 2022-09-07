@@ -17,10 +17,7 @@ class HomeController extends GetxController {
   ];
 
   List<BarChartGroupData> chartGroups() {
-    return points
-        .map((point) => BarChartGroupData(
-            x: point.x.toInt(), barRods: [BarChartRodData(toY: point.y)]))
-        .toList();
+    return points.map((point) => BarChartGroupData(x: point.x.toInt(), barRods: [BarChartRodData(toY: point.y)])).toList();
   }
 
   SideTitles get bottomTitles => SideTitles(
@@ -52,22 +49,22 @@ class HomeController extends GetxController {
             case 0:
               text = 'A';
               break;
-            case 2:
+            case 1:
               text = 'B';
               break;
-            case 4:
+            case 2:
               text = 'C';
               break;
-            case 6:
+            case 3:
               text = 'D';
               break;
-            case 8:
+            case 4:
               text = 'E';
               break;
-            case 10:
+            case 5:
               text = 'F';
               break;
-            case 11:
+            case 6:
               text = 'G';
               break;
           }

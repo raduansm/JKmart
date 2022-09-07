@@ -63,6 +63,7 @@ class HomeScreen extends GetView<HomeController> {
                     text: "Weekly",
                     onPressed: () {},
                     isSolidButton: true,
+                    color: CustomColor.secondaryColor,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -71,6 +72,7 @@ class HomeScreen extends GetView<HomeController> {
                     text: "Monthly",
                     onPressed: () {},
                     isSolidButton: true,
+                    color: CustomColor.secondaryColor,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -79,6 +81,7 @@ class HomeScreen extends GetView<HomeController> {
                     text: "Yealy",
                     onPressed: () {},
                     isSolidButton: true,
+                    color: CustomColor.secondaryColor,
                   ),
                 )
               ],
@@ -87,83 +90,67 @@ class HomeScreen extends GetView<HomeController> {
               height: 20,
             ),
             Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Last 7 Days',
-                          style: TextStyle(
-                              color: CustomColor.secondaryColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w200),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Row(
-                          children: const [
-                            Text(
-                              '341.02',
-                              style: TextStyle(
-                                  color: CustomColor.primaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Icon(
-                              Icons.circle_outlined,
-                              color: Colors.red,
-                              size: 10,
-                            ),
-                            Text(
-                              "11%",
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w200),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            Text("Avg day",
-                                style: Get.textTheme.bodyText1!.copyWith(
-                                    color: CustomColor.secondaryColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w100)),
-                            const SizedBox(height: 5),
-                            Text("17",
-                                style: Get.textTheme.bodyText1!.copyWith(
-                                    color: CustomColor.primaryColor,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                )),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Last 7 Days',
+                        style: TextStyle(color: CustomColor.secondaryColor, fontSize: 14, fontWeight: FontWeight.w200),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Row(
+                        children: const [
+                          Text(
+                            '341.02',
+                            style: TextStyle(color: CustomColor.primaryColor, fontSize: 20, fontWeight: FontWeight.w400),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.circle_outlined,
+                            color: Colors.red,
+                            size: 10,
+                          ),
+                          Text(
+                            "11%",
+                            style: TextStyle(color: Colors.red, fontSize: 14, fontWeight: FontWeight.w200),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          Text("Avg day", style: Get.textTheme.bodyText1!.copyWith(color: CustomColor.secondaryColor, fontSize: 12, fontWeight: FontWeight.w100)),
+                          const SizedBox(height: 5),
+                          Text("17", style: Get.textTheme.bodyText1!.copyWith(color: CustomColor.primaryColor, fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
             Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
               ),
               child: AspectRatio(
-                aspectRatio: 2,
+                aspectRatio: 1.5,
                 child: BarChart(
                   BarChartData(
                     alignment: BarChartAlignment.spaceAround,
@@ -176,12 +163,9 @@ class HomeScreen extends GetView<HomeController> {
                       bottomTitles: AxisTitles(
                         sideTitles: controller.bottomTitles,
                       ),
-                      leftTitles:
-                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      topTitles:
-                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      rightTitles:
-                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     ),
                   ),
                 ),
