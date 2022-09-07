@@ -5,7 +5,7 @@ import 'package:jkmart/controllers/auth_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/core/widgets/global_bottom_button.dart';
 import 'package:jkmart/core/widgets/global_text_field.dart';
-import 'package:jkmart/screens/home/home_screen.dart';
+import 'package:jkmart/screens/home/pages/home_screen.dart';
 import 'package:lottie/lottie.dart';
 
 class SignInScreen extends GetView<AuthController> {

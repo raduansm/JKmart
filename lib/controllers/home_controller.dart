@@ -6,7 +6,15 @@ import 'package:jkmart/screens/home/widgets/pricepoint.dart';
 class HomeController extends GetxController {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<PricePoint> points = [PricePoint(x: 4, y: 10), PricePoint(x: 5, y: 10)];
+  List<PricePoint> points = [
+    PricePoint(x: 1, y: 10),
+    PricePoint(x: 2, y: 3),
+    PricePoint(x: 3, y: 5),
+    PricePoint(x: 4, y: 9),
+    PricePoint(x: 5, y: 8),
+    PricePoint(x: 6, y: 2),
+    PricePoint(x: 7, y: 11),
+  ];
 
   List<BarChartGroupData> chartGroups() {
     return points
@@ -20,23 +28,47 @@ class HomeController extends GetxController {
         getTitlesWidget: (value, meta) {
           String text = '';
           switch (value.toInt()) {
+            // case 0:
+            //   text = 'Saturday';
+            //   break;
+            // case 2:
+            //   text = 'Sunday';
+            //   break;
+            // case 4:
+            //   text = 'Monday';
+            //   break;
+            // case 6:
+            //   text = 'Tuesday';
+            //   break;
+            // case 8:
+            //   text = 'Wednesday';
+            //   break;
+            // case 10:
+            //   text = 'Thursday';
+            //   break;
+            // case 11:
+            //   text = 'Friday';
+            //   break;
             case 0:
-              text = 'Saturday';
+              text = 'A';
               break;
             case 2:
-              text = 'Mar';
+              text = 'B';
               break;
             case 4:
-              text = 'May';
+              text = 'C';
               break;
             case 6:
-              text = 'Jul';
+              text = 'D';
               break;
             case 8:
-              text = 'Sep';
+              text = 'E';
               break;
             case 10:
-              text = 'Nov';
+              text = 'F';
+              break;
+            case 11:
+              text = 'G';
               break;
           }
 
