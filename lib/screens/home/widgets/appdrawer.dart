@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:jkmart/screens/home/widgets/drawer_data.dart';
 
-class AppDrawer extends StatefulWidget {
+class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
-  @override
-  State<AppDrawer> createState() => _AppDrawerState();
-}
-
-class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -34,13 +31,13 @@ class _AppDrawerState extends State<AppDrawer> {
                   color: Colors.white,
                 ),
 
-                drawer_data(
+                DrawerTile(
                   // imagePath: 'images/delivery_man.png',
                   textData: 'Main APP',
                   width: 12,
                   onTap: () {},
                 ),
-                drawer_data(
+                DrawerTile(
                   // imagePath: 'images/delivery_man.png',
                   textData: 'Delivery APP ',
                   width: 12,
@@ -58,7 +55,7 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
             Positioned(
               bottom: 60.0,
-              child: drawer_data(
+              child: DrawerTile(
                 // imagePath: 'images/delivery_man.png',
                 textData: 'LOG OUT',
                 width: 10,

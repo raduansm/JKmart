@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jkmart/controllers/home_controller.dart';
-import 'package:jkmart/core/widgets/appdrawer.dart';
+import 'package:jkmart/screens/home/widgets/appdrawer.dart';
+import 'package:jkmart/screens/home/widgets/drawer_data.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,8 +11,8 @@ class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scaffoldKey,
       appBar: AppBar(
-        key: controller.scaffoldKey,
         backgroundColor: Colors.black,
         elevation: 0,
         leading: IconButton(

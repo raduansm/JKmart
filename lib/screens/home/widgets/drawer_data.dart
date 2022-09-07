@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class drawer_data extends StatelessWidget {
-  drawer_data({
+class DrawerTile extends StatelessWidget {
+  DrawerTile({
+    Key? key,
     // required this.imagePath,
     required this.textData,
     required this.onTap,
     required this.width,
-  });
+  }) : super(key: key);
 
   // final String imagePath;
   final String textData;
