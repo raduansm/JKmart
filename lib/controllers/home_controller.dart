@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/screens/home/widgets/pricepoint.dart';
 
 class HomeController extends GetxController {
@@ -17,10 +18,7 @@ class HomeController extends GetxController {
   ];
 
   List<BarChartGroupData> chartGroups() {
-    return points
-        .map((point) => BarChartGroupData(
-            x: point.x.toInt(), barRods: [BarChartRodData(toY: point.y)]))
-        .toList();
+    return points.map((point) => BarChartGroupData(x: point.x.toInt(), barRods: [BarChartRodData(toY: point.y, color: Colors.amber)])).toList();
   }
 
   SideTitles get bottomTitles => SideTitles(
@@ -51,7 +49,10 @@ class HomeController extends GetxController {
               break;
           }
 
-          return Text(text);
+          return Text(
+            text,
+            style: Get.textTheme.headline6?.copyWith(color: CustomColor.grey2),
+          );
         },
       );
 
