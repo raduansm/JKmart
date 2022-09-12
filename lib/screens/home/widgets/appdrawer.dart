@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jkmart/core/utils/colors.dart';
+import 'package:jkmart/screens/expense/pages/expense.dart';
 import 'package:jkmart/screens/home/widgets/drawer_data.dart';
+import 'package:jkmart/screens/order_management/pages/order_management.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -30,15 +32,19 @@ class AppDrawer extends StatelessWidget {
 
                 DrawerTile(
                   // imagePath: 'images/delivery_man.png',
-                  textData: 'Main APP',
+                  textData: 'Order Management',
                   width: 12,
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(const OrderManagementScreen());
+                  },
                 ),
                 DrawerTile(
                   // imagePath: 'images/delivery_man.png',
-                  textData: 'Delivery APP ',
+                  textData: 'Expense',
                   width: 12,
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(const ExpenseScreen());
+                  },
                 ),
                 // drawer_data(
                 //   imagePath: 'images/delivery_man.png',
