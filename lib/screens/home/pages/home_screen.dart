@@ -30,14 +30,7 @@ class HomeScreen extends GetView<HomeController> {
               children: [
                 GestureDetector(
                   onTap: () => controller.openDrawer(),
-                  child: const CircleAvatar(
-                    radius: 25,
-                    backgroundColor: CustomColor.secondaryColor,
-                    child: Icon(
-                      Icons.menu,
-                      color: Colors.white60,
-                    ),
-                  ),
+                  child: Image.asset('assets/images/menu.png', scale: 5),
                 ),
                 Text(
                   'JK MART',

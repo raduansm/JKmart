@@ -2,10 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jkmart/controllers/expense_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
+import 'package:jkmart/screens/expense/pages/new_expanse.dart';
+import 'package:jkmart/screens/home/pages/home_screen.dart';
 
 class ExpenseScreen extends GetView<ExpenseController> {
   const ExpenseScreen({Key? key}) : super(key: key);
-
+  //  void _showDatePicker() {
+  //   showDatePicker(
+  //     context: context,
+  //     initialDate: DateTime.now(),
+  //     firstDate: DateTime(2000),
+  //     lastDate: DateTime(2025),
+  //   ).then((value) {
+  //     setState(() {
+  //       _dateTime = value!;
+  //     });
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,11 +32,11 @@ class ExpenseScreen extends GetView<ExpenseController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => Get.back(),
+                    onTap: () => Get.to(const HomeScreen()),
                     child: CircleAvatar(
                       radius: 20,
                       backgroundColor: CustomColor.secondaryColor,
-                      child: Image.asset('assets/images/666.png', scale: 1.5),
+                      child: Image.asset('assets/images/menu.png', scale: 5),
                     ),
                   ),
                   const Text(
@@ -36,95 +49,14 @@ class ExpenseScreen extends GetView<ExpenseController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              backgroundColor: CustomColor.secondaryColor,
-                              content: Stack(
-                                children: <Widget>[
-                                  Positioned(
-                                    right: -40.0,
-                                    top: -40.0,
-                                    child: InkResponse(
-                                      onTap: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const CircleAvatar(
-                                        child: Icon(Icons.close),
-                                        backgroundColor: Colors.red,
-                                      ),
-                                    ),
-                                  ),
-                                  Form(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: const [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Add New Order",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        Divider(
-                                          color: Colors.white,
-                                          thickness: 1,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Filter",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        Divider(
-                                          color: Colors.white,
-                                          thickness: 1,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Add New Order",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        Divider(
-                                          color: Colors.white,
-                                          thickness: 1,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Edit Order",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          });
+                      Get.to(NewExpanseScreen());
                     },
                     child: const CircleAvatar(
-                      radius: 25,
+                      radius: 20,
                       backgroundColor: CustomColor.secondaryColor,
                       child: Icon(
-                        Icons.circle_sharp,
+                        Icons.add,
+                        size: 25,
                         color: Colors.white60,
                       ),
                     ),
@@ -152,6 +84,30 @@ class ExpenseScreen extends GetView<ExpenseController> {
                 ),
               ),
               const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Name',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'Date',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Container(
                 height: 40,
                 decoration: BoxDecoration(
@@ -162,8 +118,8 @@ class ExpenseScreen extends GetView<ExpenseController> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
+                    children: const [
+                      Text(
                         "Name of Expense",
                         style: TextStyle(
                           color: Colors.white,
@@ -171,78 +127,13 @@ class ExpenseScreen extends GetView<ExpenseController> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const Text(
-                        "001",
+                      Text(
+                        "Sep 23 ",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                backgroundColor: CustomColor.secondaryColor,
-                                content: Stack(
-                                  children: <Widget>[
-                                    Positioned(
-                                      right: -40.0,
-                                      top: -40.0,
-                                      child: InkResponse(
-                                        onTap: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: const CircleAvatar(
-                                          child: Icon(Icons.close),
-                                          backgroundColor: Colors.red,
-                                        ),
-                                      ),
-                                    ),
-                                    Form(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: const [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              "Details",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Divider(
-                                            color: Colors.white,
-                                            thickness: 1,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              "Edit",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
-                        },
-                        child: Container(
-                            height: 20,
-                            width: 20,
-                            child:
-                                Image.asset('assets/images/665.png', scale: 2)),
                       ),
                     ],
                   ),
