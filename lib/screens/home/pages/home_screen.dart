@@ -72,7 +72,12 @@ class HomeScreen extends GetView<HomeController> {
                 Expanded(
                   child: GlobalBottomButton(
                     text: "Yealy",
-                    onPressed: () {},
+                    onPressed: () {
+
+
+
+                      
+                    },
                     isSolidButton: true,
                     color: CustomColor.secondaryColor,
                   ),

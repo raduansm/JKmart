@@ -32,7 +32,7 @@ class ExpenseScreen extends GetView<ExpenseController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => Get.to(const HomeScreen()),
+                    onTap: () => Get.back(),
                     child: CircleAvatar(
                       radius: 20,
                       backgroundColor: CustomColor.secondaryColor,

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/screens/expense/pages/expense.dart';
 import 'package:jkmart/screens/home/widgets/drawer_data.dart';
+import 'package:jkmart/screens/income/pages/income_screen.dart';
+import 'package:jkmart/screens/lottery/pages/lottery_screen.dart';
 import 'package:jkmart/screens/order_management/pages/order_management.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -35,7 +37,7 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Order Management',
                   width: 12,
                   onTap: () {
-                    Get.to(const OrderManagementScreen());
+                    Get.to(() => const OrderManagementScreen());
                   },
                 ),
                 DrawerTile(
@@ -43,7 +45,23 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Expense',
                   width: 12,
                   onTap: () {
-                    Get.to(const ExpenseScreen());
+                    Get.to(() => const ExpenseScreen());
+                  },
+                ),
+                DrawerTile(
+                  // imagePath: 'images/delivery_man.png',
+                  textData: 'Lottery',
+                  width: 12,
+                  onTap: () {
+                    Get.to(() => const LotteryScreen());
+                  },
+                ),
+                DrawerTile(
+                  // imagePath: 'images/delivery_man.png',
+                  textData: 'Income',
+                  width: 12,
+                  onTap: () {
+                    Get.to(() => const IncomeScreen());
                   },
                 ),
                 // drawer_data(

@@ -1,18 +1,16 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jkmart/screens/order_management/model/order_model.dart';
+import 'package:jkmart/screens/income/model/income_model.dart';
 
-class OrderManagementController extends GetxController {
-  final formKey = GlobalKey<FormState>();
+class IncomeController extends GetxController {
   final String collectionId = "634f40a9c1be74eb6ae6";
   final String databaseId = "62dc4ad195fe6c0fe8c5";
   Client client = Client();
   Databases? db;
   String? _error;
   String? get error => _error;
-  OrderState() {
+  IncomeState() {
     _init();
   }
 
@@ -24,17 +22,17 @@ class OrderManagementController extends GetxController {
     db = Databases(client);
   }
 
-  Future<List<OrderModel>> getOrders() async {
-    List<OrderModel> OrderList = [];
+  Future<List<IncomeModel>> getIncomes() async {
+    List<IncomeModel> IncomeList = [];
     try {
       DocumentList res = await db!
           .listDocuments(databaseId: databaseId, collectionId: collectionId);
 
       if (res.statuscode != 200) {}
       for (var i = 0; i < res.documents!.length; i++) {
-        OrderList.add(OrderModel.fromJson(res.documents[i].data));
+        IncomeList.add(IncomeModel.fromJson(res.documents[i].data));
       }
-      return OrderList;
+      return IncomeList;
     } on AppwriteException catch (e) {
       _error = e.message;
       print(e.message);

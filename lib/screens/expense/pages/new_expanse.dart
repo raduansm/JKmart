@@ -24,13 +24,16 @@ class NewExpanseScreen extends GetView<ExpenseController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => Get.to(const HomeScreen()),
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: CustomColor.secondaryColor,
-                      child: Image.asset('assets/images/menu.png', scale: 5),
-                    ),
-                  ),
+                      onTap: () => Get.to(const HomeScreen()),
+                      child: const CircleAvatar(
+                        radius: 20,
+                        backgroundColor: CustomColor.secondaryColor,
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 20,
+                          color: Colors.white60,
+                        ),
+                      )),
                   const Text(
                     'Add New Expanse ',
                     style: TextStyle(
@@ -40,12 +43,112 @@ class NewExpanseScreen extends GetView<ExpenseController> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => Get.back(),
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: CustomColor.secondaryColor,
+                              content: Stack(
+                                children: <Widget>[
+                                  Positioned(
+                                    right: -40.0,
+                                    top: -40.0,
+                                    child: InkResponse(
+                                      onTap: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const CircleAvatar(
+                                        child: Icon(Icons.close),
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                  Form(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: const [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            "Name",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Divider(
+                                          color: Colors.white,
+                                          thickness: 1,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            "Item No: 01",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Divider(
+                                          color: Colors.white,
+                                          thickness: 1,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            "Cost",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Divider(
+                                          color: Colors.white,
+                                          thickness: 1,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            "Sale Price",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Divider(
+                                          color: Colors.white,
+                                          thickness: 1,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text(
+                                            "Items in Stock currently",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          });
+                    },
                     child: const CircleAvatar(
                       radius: 20,
                       backgroundColor: CustomColor.secondaryColor,
                       child: Icon(
-                        Icons.arrow_back_ios,
+                        Icons.add,
                         size: 20,
                         color: Colors.white60,
                       ),
