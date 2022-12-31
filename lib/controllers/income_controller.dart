@@ -25,11 +25,10 @@ class IncomeController extends GetxController {
   Future<List<IncomeModel>> getIncomes() async {
     List<IncomeModel> IncomeList = [];
     try {
-      DocumentList res = await db!
-          .listDocuments(databaseId: databaseId, collectionId: collectionId);
+      DocumentList res = await db!.listDocuments(databaseId: databaseId, collectionId: collectionId);
 
-      if (res.statuscode != 200) {}
-      for (var i = 0; i < res.documents!.length; i++) {
+      // if (res.statuscode != 200) {}
+      for (var i = 0; i < res.documents.length; i++) {
         IncomeList.add(IncomeModel.fromJson(res.documents[i].data));
       }
       return IncomeList;

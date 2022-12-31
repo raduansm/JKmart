@@ -27,11 +27,10 @@ class OrderManagementController extends GetxController {
   Future<List<OrderModel>> getOrders() async {
     List<OrderModel> OrderList = [];
     try {
-      DocumentList res = await db!
-          .listDocuments(databaseId: databaseId, collectionId: collectionId);
+      DocumentList res = await db!.listDocuments(databaseId: databaseId, collectionId: collectionId);
 
-      if (res.statuscode != 200) {}
-      for (var i = 0; i < res.documents!.length; i++) {
+      // if (res.statuscode != 200) {}
+      for (var i = 0; i < res.documents.length; i++) {
         OrderList.add(OrderModel.fromJson(res.documents[i].data));
       }
       return OrderList;

@@ -44,10 +44,7 @@ class SignInScreen extends GetView<AuthController> {
                 TextSpan(
                   children: [
                     const TextSpan(text: 'Please '),
-                    TextSpan(
-                        text: 'sign in ',
-                        style: Get.textTheme.headline5
-                            ?.copyWith(color: CustomColor.blue)),
+                    TextSpan(text: 'sign in ', style: Get.textTheme.headline5?.copyWith(color: CustomColor.blue)),
                     const TextSpan(text: 'first to continue '),
                   ],
                 ),
@@ -63,8 +60,7 @@ class SignInScreen extends GetView<AuthController> {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                                controller.selectedUserType.value =
-                                    controller.userTypes[index];
+                                controller.selectedUserType.value = controller.userTypes[index];
                                 Get.back();
                               },
                               child: ListTile(
@@ -129,8 +125,7 @@ class SignInScreen extends GetView<AuthController> {
                 child: Text(
                   'Forgot password?',
                   textAlign: TextAlign.center,
-                  style: Get.textTheme.headline6
-                      ?.copyWith(color: CustomColor.blue),
+                  style: Get.textTheme.headline6?.copyWith(color: CustomColor.blue),
                 ),
               ),
               const SizedBox(height: 20),

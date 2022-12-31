@@ -62,18 +62,14 @@ class LotteryScreen extends GetView<LotteryController> {
                                 ),
                                 Form(
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.all(8.0),
                                         child: Text(
                                           "Date:",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       const Divider(
@@ -84,10 +80,7 @@ class LotteryScreen extends GetView<LotteryController> {
                                         padding: EdgeInsets.all(8.0),
                                         child: Text(
                                           "Start:",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       const Divider(
@@ -98,10 +91,7 @@ class LotteryScreen extends GetView<LotteryController> {
                                         padding: EdgeInsets.all(8.0),
                                         child: Text(
                                           "Close:",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       const Divider(
@@ -112,10 +102,7 @@ class LotteryScreen extends GetView<LotteryController> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
                                           "Total",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       const SizedBox(
@@ -150,13 +137,11 @@ class LotteryScreen extends GetView<LotteryController> {
             const SizedBox(
               height: 20,
             ),
-            Expanded(
-              child: GlobalBottomButton(
-                text: "1 September 2021",
-                onPressed: () {},
-                isSolidButton: true,
-                color: CustomColor.secondaryColor,
-              ),
+            GlobalBottomButton(
+              text: "1 September 2021",
+              onPressed: () {},
+              isSolidButton: true,
+              color: CustomColor.secondaryColor,
             ),
             const SizedBox(
               height: 10,
@@ -185,21 +170,20 @@ class LotteryScreen extends GetView<LotteryController> {
             const SizedBox(
               height: 5,
             ),
-            const Expanded(
-              child: Divider(
-                color: Colors.white,
-                thickness: 1,
-              ),
+            const Divider(
+              color: Colors.white,
+              thickness: 1,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               height: 25,
               color: CustomColor.secondaryColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "1",
+                    // "1",
+                    controller.valuetest.toString(),
                     style: Get.textTheme.subtitle1,
                   ),
                   Text(

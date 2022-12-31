@@ -20,8 +20,7 @@ Future<void> main() async {
       .setProject('62dc48a91676c0ff925a') // Your project ID
       .setSelfSigned(); // Remove in production
 
-  await di
-      .init(); //Inject all the dependencies and wait for it is done (i.e. UI won't built until all the dependencies are injected)
+  await di.init(); //Inject all the dependencies and wait for it is done (i.e. UI won't built until all the dependencies are injected)
   runApp(const MyApp());
 }
 

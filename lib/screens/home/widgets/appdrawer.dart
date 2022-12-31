@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jkmart/core/utils/colors.dart';
+import 'package:jkmart/initial_binding.dart';
 import 'package:jkmart/screens/expense/pages/expense.dart';
 import 'package:jkmart/screens/home/widgets/drawer_data.dart';
 import 'package:jkmart/screens/income/pages/income_screen.dart';
@@ -53,7 +54,7 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Lottery',
                   width: 12,
                   onTap: () {
-                    Get.to(() => const LotteryScreen());
+                    Get.to(() => const LotteryScreen(), binding: InitialBinding());
                   },
                 ),
                 DrawerTile(

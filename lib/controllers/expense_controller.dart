@@ -25,11 +25,10 @@ class ExpenseController extends GetxController {
   Future<List<ExpenseModel>> getIncomes() async {
     List<ExpenseModel> ExpenseList = [];
     try {
-      DocumentList res = await db!
-          .listDocuments(databaseId: databaseId, collectionId: collectionId);
+      DocumentList res = await db!.listDocuments(databaseId: databaseId, collectionId: collectionId);
 
-      if (res.statuscode != 200) {}
-      for (var i = 0; i < res.documents!.length; i++) {
+      // if (res.statuscode != 200) {}
+      for (var i = 0; i < res.documents.length; i++) {
         ExpenseList.add(ExpenseModel.fromJson(res.documents[i].data));
       }
       return ExpenseList;
