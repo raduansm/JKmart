@@ -6,15 +6,13 @@ class LotteryDataSource {
 
   LotteryDataSource({required this.db});
 
+  final _collectionId = '634f40a9c1be74eb6ae6';
+
   Future<List<LotteryModel>> getLotteries() async {
-    final response = await db.listDocuments(collectionId: '634f40a9c1be74eb6ae6');
+    final response = await db.listDocuments(collectionId: _collectionId);
 
-    List<LotteryModel> lotteryList = [];
+    final lotteries = List<LotteryModel>.from(response.documents.map((e) => LotteryModel.fromJson(e.data)));
 
-    for (var element in response.documents) {
-      lotteryList.add(LotteryModel.fromJson(element.data));
-    }
-
-    return lotteryList;
+    return lotteries;
   }
 }

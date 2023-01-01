@@ -9,25 +9,16 @@ import 'package:jkmart/data/repositories/lottery_repository.dart';
 final sl = GetIt.instance; //sl is referred to as Service Locator
 
 Future<void> init() async {
-  //Repositories
-  // sl.registerLazySingleton<SignInRepository>(() => SignInRepository(networkInfo: sl(), remoteDataSource: sl()));
+  //*Repositories
   sl.registerLazySingleton<LotteryRepository>(() => LotteryRepository(dataSource: sl(), networkInfo: sl()));
 
-  //Data Sources
-  // sl.registerLazySingleton<SignInRemoteDataSource>(() => SignInRemoteDataSource(auth: sl()));
+  //*Data Sources
   sl.registerLazySingleton<LotteryDataSource>(() => LotteryDataSource(db: sl()));
 
   //Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(dataConnectionChecker: sl()));
 
   //Intialize
-
-  // final client = ChopperClient(
-  //   interceptors: [
-  //     CurlInterceptor(),
-  //     HttpLoggingInterceptor(),
-  //   ],
-  // );
 
   final client = Client()
       .setEndpoint('http://home.logstacks.com:8080/v1') // Your API Endpoint
@@ -38,10 +29,6 @@ Future<void> init() async {
 
   //External
   sl.registerLazySingleton(() => InternetConnectionChecker());
-  // sl.registerLazySingleton(() => FirebaseAuth.instance);
-  // sl.registerLazySingleton(() => FirebaseFirestore.instance);
-  // sl.registerLazySingleton(() => FirebaseStorage.instance);
-  // sl.registerLazySingleton(() => RestClientService.create(client));
   sl.registerLazySingleton(() => client);
   sl.registerLazySingleton(() => db);
 }

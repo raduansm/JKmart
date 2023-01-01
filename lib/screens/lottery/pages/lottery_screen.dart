@@ -191,21 +191,37 @@ class LotteryScreen extends GetView<LotteryController> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                controller.lotteries[index].serial!,
-                                style: Get.textTheme.subtitle1,
+                              SizedBox(
+                                width: 20,
+                                child: Text(
+                                  controller.lotteries[index].serial!,
+                                  style: Get.textTheme.subtitle1,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              Text(
-                                controller.lotteries[index].start!,
-                                style: Get.textTheme.subtitle1,
+                              SizedBox(
+                                width: 20,
+                                child: Text(
+                                  controller.lotteries[index].start!,
+                                  style: Get.textTheme.subtitle1,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              Text(
-                                controller.lotteries[index].close!,
-                                style: Get.textTheme.subtitle1,
+                              SizedBox(
+                                width: 20,
+                                child: Text(
+                                  controller.lotteries[index].close!,
+                                  style: Get.textTheme.subtitle1,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              Text(
-                                controller.lotteries[index].total!,
-                                style: Get.textTheme.subtitle1,
+                              SizedBox(
+                                width: 20,
+                                child: Text(
+                                  controller.lotteries[index].total!,
+                                  style: Get.textTheme.subtitle1,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ],
                           ),
