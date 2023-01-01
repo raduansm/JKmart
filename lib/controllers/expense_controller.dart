@@ -19,13 +19,13 @@ class ExpenseController extends GetxController {
         .setEndpoint('http://home.logstacks.com:8080/v1') // Your API Endpoint
         .setProject('62dc48a91676c0ff925a') // Your project ID
         .setSelfSigned(); // Remove in production
-    db = Databases(client);
+    db = Databases(client, databaseId: databaseId);
   }
 
   Future<List<ExpenseModel>> getIncomes() async {
     List<ExpenseModel> ExpenseList = [];
     try {
-      DocumentList res = await db!.listDocuments(databaseId: databaseId, collectionId: collectionId);
+      DocumentList res = await db!.listDocuments(collectionId: collectionId);
 
       // if (res.statuscode != 200) {}
       for (var i = 0; i < res.documents.length; i++) {

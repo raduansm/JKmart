@@ -54,7 +54,7 @@ dependencies:
   intl: ^0.17.0
   fl_chart: ^0.55.1
   hovering: ^1.0.4
-  appwrite: ^8.2.0
+  appwrite: 7.0.0
 
 dev_dependencies:
   flutter_test:
