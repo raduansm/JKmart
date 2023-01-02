@@ -11,6 +11,7 @@ class GlobalTextField extends StatelessWidget {
     this.onShowPasswordTap,
     this.keyboardType,
     this.textAlign = TextAlign.start,
+    this.validator,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -19,15 +20,17 @@ class GlobalTextField extends StatelessWidget {
   final VoidCallback? onShowPasswordTap;
   final TextInputType? keyboardType;
   final TextAlign textAlign;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
-      child: TextField(
+      // height: 70,
+      child: TextFormField(
         style: Get.textTheme.headline4,
         textAlign: textAlign,
         decoration: InputDecoration(
+          errorMaxLines: 2,
           contentPadding: const EdgeInsets.all(10),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
@@ -47,6 +50,7 @@ class GlobalTextField extends StatelessWidget {
         autocorrect: !isPassword,
         enableSuggestions: !isPassword,
         keyboardType: keyboardType,
+        validator: validator,
       ),
     );
   }

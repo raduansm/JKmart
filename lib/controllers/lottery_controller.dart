@@ -27,11 +27,24 @@ class LotteryController extends GetxController {
   TextEditingController closeController = TextEditingController();
   TextEditingController totalController = TextEditingController();
 
+  ///Form key to validate all the fields of add lottery
+  final formKey = GlobalKey<FormState>();
+
   @override
   void onInit() {
     super.onInit();
 
     getLotteries();
+  }
+
+  String? addLotteryFieldsValidator(value) {
+    if (value!.isEmpty) {
+      return "This field is required";
+    } else if (int.tryParse(value) == null) {
+      return "Please enter number only. Example: 27";
+    } else {
+      return null;
+    }
   }
 
   Future<void> getLotteries() async {
@@ -53,6 +66,8 @@ class LotteryController extends GetxController {
   }
 
   Future<void> addLottery() async {
+    if (!formKey.currentState!.validate()) return;
+
     isAddingLottery.value = true;
 
     final result = await repository.addLottery(serial: serialController.text, start: startController.text, close: closeController.text, total: totalController.text);

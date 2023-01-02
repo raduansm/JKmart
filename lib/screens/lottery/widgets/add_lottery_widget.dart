@@ -22,9 +22,8 @@ class AddLottery extends GetView<LotteryController> {
                 child: AlertDialog(
                   scrollable: true,
                   backgroundColor: CustomColor.secondaryColor,
-                  content: SizedBox(
-                    height: 400,
-                    width: Get.size.width,
+                  content: Form(
+                    key: controller.formKey,
                     child: Column(
                       children: <Widget>[
                         Align(
@@ -41,7 +40,7 @@ class AddLottery extends GetView<LotteryController> {
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
-                          height: 50,
+                          // height: 50,
                           width: MediaQuery.of(context).size.width,
                           child: Row(
                             children: [
@@ -56,11 +55,13 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 15,
                               ),
                               Expanded(
-                                  child: GlobalTextField(
-                                textAlign: TextAlign.center,
-                                keyboardType: TextInputType.number,
-                                controller: controller.serialController,
-                              ))
+                                child: GlobalTextField(
+                                  validator: controller.addLotteryFieldsValidator,
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.number,
+                                  controller: controller.serialController,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -69,7 +70,7 @@ class AddLottery extends GetView<LotteryController> {
                           thickness: 1,
                         ),
                         SizedBox(
-                          height: 50,
+                          // height: 50,
                           width: MediaQuery.of(context).size.width,
                           child: Row(
                             children: [
@@ -84,11 +85,13 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 15,
                               ),
                               Flexible(
-                                  child: GlobalTextField(
-                                textAlign: TextAlign.center,
-                                keyboardType: TextInputType.number,
-                                controller: controller.startController,
-                              ))
+                                child: GlobalTextField(
+                                  validator: controller.addLotteryFieldsValidator,
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.number,
+                                  controller: controller.startController,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -97,7 +100,7 @@ class AddLottery extends GetView<LotteryController> {
                           thickness: 1,
                         ),
                         SizedBox(
-                          height: 50,
+                          // height: 100,
                           width: MediaQuery.of(context).size.width,
                           child: Row(
                             children: [
@@ -112,11 +115,13 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 15,
                               ),
                               Flexible(
-                                  child: GlobalTextField(
-                                textAlign: TextAlign.center,
-                                keyboardType: TextInputType.number,
-                                controller: controller.closeController,
-                              ))
+                                child: GlobalTextField(
+                                  validator: controller.addLotteryFieldsValidator,
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.number,
+                                  controller: controller.closeController,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -125,7 +130,7 @@ class AddLottery extends GetView<LotteryController> {
                           thickness: 1,
                         ),
                         SizedBox(
-                          height: 50,
+                          // height: 50,
                           width: MediaQuery.of(context).size.width,
                           child: Row(
                             children: [
@@ -141,6 +146,7 @@ class AddLottery extends GetView<LotteryController> {
                               ),
                               Expanded(
                                 child: GlobalTextField(
+                                  validator: controller.addLotteryFieldsValidator,
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   controller: controller.totalController,
