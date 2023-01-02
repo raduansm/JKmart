@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-LotteryModel lotteryModelFromJson(String str) =>
-    LotteryModel.fromJson(json.decode(str));
+LotteryModel lotteryModelFromJson(String str) => LotteryModel.fromJson(json.decode(str));
 
 String lotteryModelToJson(LotteryModel data) => json.encode(data.toJson());
 
@@ -48,8 +47,8 @@ class LotteryModel {
         "start": start,
         "close": close,
         "total": total,
-        "\u0024read": List<dynamic>.from(read!.map((x) => x)),
-        "\u0024write": List<dynamic>.from(write!.map((x) => x)),
+        // "\u0024read": List<dynamic>.from(read!.map((x) => x)),
+        // "\u0024write": List<dynamic>.from(write!.map((x) => x)),
         "\u0024id": id,
         "\u0024createdAt": createdAt,
         "\u0024updatedAt": updatedAt,

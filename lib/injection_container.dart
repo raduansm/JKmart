@@ -13,7 +13,7 @@ Future<void> init() async {
   sl.registerLazySingleton<LotteryRepository>(() => LotteryRepository(dataSource: sl(), networkInfo: sl()));
 
   //*Data Sources
-  sl.registerLazySingleton<LotteryDataSource>(() => LotteryDataSource(db: sl()));
+  sl.registerLazySingleton<LotteryDataSource>(() => LotteryDataSource(db: sl(), client: sl()));
 
   //Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(dataConnectionChecker: sl()));

@@ -6,6 +6,7 @@ import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/core/widgets/global_bottom_button.dart';
 import 'package:jkmart/core/widgets/global_text_field.dart';
 import 'package:jkmart/screens/home/widgets/appdrawer.dart';
+import 'package:jkmart/screens/lottery/widgets/add_lottery_widget.dart';
 
 class LotteryScreen extends GetView<LotteryController> {
   const LotteryScreen({Key? key}) : super(key: key);
@@ -34,8 +35,7 @@ class LotteryScreen extends GetView<LotteryController> {
                           child: CircleAvatar(
                             radius: 20,
                             backgroundColor: CustomColor.secondaryColor,
-                            child:
-                                Image.asset('assets/images/menu.png', scale: 5),
+                            child: Image.asset('assets/images/menu.png', scale: 5),
                           ),
                         ),
                         const Text(
@@ -46,181 +46,7 @@ class LotteryScreen extends GetView<LotteryController> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    backgroundColor: CustomColor.secondaryColor,
-                                    content: Stack(
-                                      children: <Widget>[
-                                        Positioned(
-                                          right: -40.0,
-                                          top: -40.0,
-                                          child: InkResponse(
-                                            onTap: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: const CircleAvatar(
-                                              child: Icon(Icons.close),
-                                              backgroundColor: Colors.red,
-                                            ),
-                                          ),
-                                        ),
-                                        Form(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Container(
-                                                height: 40,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: Row(
-                                                  children: const [
-                                                    Flexible(
-                                                      child: Text(
-                                                        "Date:",
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 15,
-                                                    ),
-                                                    Flexible(
-                                                        child:
-                                                            GlobalTextField())
-                                                  ],
-                                                ),
-                                              ),
-                                              const Divider(
-                                                color: Colors.white,
-                                                thickness: 1,
-                                              ),
-                                              Container(
-                                                height: 40,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: Row(
-                                                  children: const [
-                                                    Flexible(
-                                                      child: Text(
-                                                        "Start:",
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 15,
-                                                    ),
-                                                    Flexible(
-                                                        child:
-                                                            GlobalTextField())
-                                                  ],
-                                                ),
-                                              ),
-                                              const Divider(
-                                                color: Colors.white,
-                                                thickness: 1,
-                                              ),
-                                              Container(
-                                                height: 40,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: Row(
-                                                  children: const [
-                                                    Flexible(
-                                                      child: Text(
-                                                        "Close:",
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 15,
-                                                    ),
-                                                    Flexible(
-                                                        child:
-                                                            GlobalTextField())
-                                                  ],
-                                                ),
-                                              ),
-                                              const Divider(
-                                                color: Colors.white,
-                                                thickness: 1,
-                                              ),
-                                              Container(
-                                                height: 40,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: Row(
-                                                  children: const [
-                                                    Flexible(
-                                                      child: Text(
-                                                        "Total:",
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 15,
-                                                    ),
-                                                    Flexible(
-                                                        child:
-                                                            GlobalTextField())
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 20,
-                                              ),
-                                              GlobalBottomButton(
-                                                text: "ADD",
-                                                onPressed: () {},
-                                                isSolidButton: true,
-                                                color: CustomColor.primaryColor,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                });
-                          },
-                          child: const CircleAvatar(
-                            radius: 20,
-                            backgroundColor: CustomColor.secondaryColor,
-                            child: Icon(
-                              Icons.add,
-                              size: 20,
-                              color: Colors.white60,
-                            ),
-                          ),
-                        ),
+                        const AddLottery(),
                       ],
                     ),
                     const SizedBox(
@@ -239,7 +65,7 @@ class LotteryScreen extends GetView<LotteryController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "No. ",
+                          "Serial ",
                           style: Get.textTheme.headline5,
                         ),
                         Text(

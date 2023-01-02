@@ -7,6 +7,7 @@ class CustomTheme {
   ThemeData mainTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: CustomColor.pink,
+    useMaterial3: true,
     textTheme: GoogleFonts.mulishTextTheme(
       TextTheme(
         headline2: GoogleFonts.mulish(
