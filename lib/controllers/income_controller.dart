@@ -1,41 +1,37 @@
-import 'package:appwrite/appwrite.dart';
-import 'package:appwrite/models.dart';
 import 'package:get/get.dart';
+import 'package:jkmart/core/error/failures.dart';
+import 'package:jkmart/data/repositories/income_repository.dart';
+import 'package:jkmart/data/repositories/lottery_repository.dart';
 import 'package:jkmart/screens/income/model/income_model.dart';
 
 class IncomeController extends GetxController {
-  final String collectionId = "634f40a9c1be74eb6ae6";
-  final String databaseId = "62dc4ad195fe6c0fe8c5";
-  Client client = Client();
-  Databases? db;
-  String? _error;
-  String? get error => _error;
-  IncomeState() {
-    _init();
+  final IncomeRepository repository;
+
+  IncomeController({required this.repository});
+
+  List<IncomeModel> incomes = [];
+  RxBool isLoading = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    getIncomes();
   }
 
-  _init() async {
-    client
-        .setEndpoint('http://home.logstacks.com:8080/v1') // Your API Endpoint
-        .setProject('62dc48a91676c0ff925a') // Your project ID
-        .setSelfSigned(); // Remove in production
-    db = Databases(client, databaseId: databaseId);
-  }
+  Future<void> getIncomes() async {
+    isLoading.value = true;
 
-  Future<List<IncomeModel>> getIncomes() async {
-    List<IncomeModel> IncomeList = [];
-    try {
-      DocumentList res = await db!.listDocuments(collectionId: collectionId);
+    final result = await repository.getIncomes();
 
-      // if (res.statuscode != 200) {}
-      for (var i = 0; i < res.documents.length; i++) {
-        IncomeList.add(IncomeModel.fromJson(res.documents[i].data));
+    result.fold((l) {
+      if (l is NoConnectionFailure) {
+        Get.snackbar("No connection", "Please check your internet connection");
       }
-      return IncomeList;
-    } on AppwriteException catch (e) {
-      _error = e.message;
-      print(e.message);
-      return [];
-    }
+    }, (r) {
+      incomes = r;
+    });
+
+    isLoading.value = false;
   }
 }

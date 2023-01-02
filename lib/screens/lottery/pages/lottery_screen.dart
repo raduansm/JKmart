@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:jkmart/controllers/lottery_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/core/widgets/global_bottom_button.dart';
+import 'package:jkmart/core/widgets/global_text_field.dart';
 import 'package:jkmart/screens/home/widgets/appdrawer.dart';
 
 class LotteryScreen extends GetView<LotteryController> {
@@ -33,7 +34,8 @@ class LotteryScreen extends GetView<LotteryController> {
                           child: CircleAvatar(
                             radius: 20,
                             backgroundColor: CustomColor.secondaryColor,
-                            child: Image.asset('assets/images/menu.png', scale: 5),
+                            child:
+                                Image.asset('assets/images/menu.png', scale: 5),
                           ),
                         ),
                         const Text(
@@ -68,47 +70,128 @@ class LotteryScreen extends GetView<LotteryController> {
                                         ),
                                         Form(
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              const Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  "Date:",
-                                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                              Container(
+                                                height: 40,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                child: Row(
+                                                  children: const [
+                                                    Flexible(
+                                                      child: Text(
+                                                        "Date:",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 15,
+                                                    ),
+                                                    Flexible(
+                                                        child:
+                                                            GlobalTextField())
+                                                  ],
                                                 ),
                                               ),
                                               const Divider(
                                                 color: Colors.white,
                                                 thickness: 1,
                                               ),
-                                              const Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  "Start:",
-                                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                              Container(
+                                                height: 40,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                child: Row(
+                                                  children: const [
+                                                    Flexible(
+                                                      child: Text(
+                                                        "Start:",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 15,
+                                                    ),
+                                                    Flexible(
+                                                        child:
+                                                            GlobalTextField())
+                                                  ],
                                                 ),
                                               ),
                                               const Divider(
                                                 color: Colors.white,
                                                 thickness: 1,
                                               ),
-                                              const Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  "Close:",
-                                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                              Container(
+                                                height: 40,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                child: Row(
+                                                  children: const [
+                                                    Flexible(
+                                                      child: Text(
+                                                        "Close:",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 15,
+                                                    ),
+                                                    Flexible(
+                                                        child:
+                                                            GlobalTextField())
+                                                  ],
                                                 ),
                                               ),
                                               const Divider(
                                                 color: Colors.white,
                                                 thickness: 1,
                                               ),
-                                              const Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  "Total",
-                                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                              Container(
+                                                height: 40,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                child: Row(
+                                                  children: const [
+                                                    Flexible(
+                                                      child: Text(
+                                                        "Total:",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 15,
+                                                    ),
+                                                    Flexible(
+                                                        child:
+                                                            GlobalTextField())
+                                                  ],
                                                 ),
                                               ),
                                               const SizedBox(

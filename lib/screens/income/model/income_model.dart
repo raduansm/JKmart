@@ -71,8 +71,6 @@ class Attribute {
     this.array,
     this.size,
     this.attributeDefault,
-    this.min,
-    this.max,
   });
 
   String? key;
@@ -82,8 +80,6 @@ class Attribute {
   bool? array;
   int? size;
   dynamic attributeDefault;
-  double? min;
-  double? max;
 
   factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
         key: json["key"],
@@ -91,10 +87,8 @@ class Attribute {
         status: json["status"],
         required: json["required"],
         array: json["array"],
-        size: json["size"] == null ? null : json["size"],
+        size: json["size"],
         attributeDefault: json["default"],
-        min: json["min"] == null ? null : json["min"].toDouble(),
-        max: json["max"] == null ? null : json["max"].toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -103,9 +97,7 @@ class Attribute {
         "status": status,
         "required": required,
         "array": array,
-        "size": size == null ? null : size,
+        "size": size,
         "default": attributeDefault,
-        "min": min == null ? null : min,
-        "max": max == null ? null : max,
       };
 }

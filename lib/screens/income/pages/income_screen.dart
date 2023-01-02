@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jkmart/controllers/income_controller.dart';
@@ -172,40 +173,56 @@ class IncomeScreen extends GetView<IncomeController> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 40,
-                color: CustomColor.secondaryColor,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("Jk Mart",
-                        style: Get.textTheme.bodyText1!
-                            .copyWith(color: Colors.white)),
-                    // const SizedBox(width: 1),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10, bottom: 10),
-                      child: VerticalDivider(
-                        color: Colors.white,
-                        thickness: 1,
-                      ),
-                    ),
-                    Text("\$50",
-                        style: Get.textTheme.bodyText1!
-                            .copyWith(color: Colors.white)),
+              Obx(
+                () => controller.isLoading.value
+                    ? const Center(
+                        child: CupertinoActivityIndicator(),
+                      )
+                    : ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return Container(
+                            height: 40,
+                            color: CustomColor.secondaryColor,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(controller.incomes[index].name!,
+                                    style: Get.textTheme.bodyText1!
+                                        .copyWith(color: Colors.white)),
+                                // const SizedBox(width: 1),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                                  child: VerticalDivider(
+                                    color: Colors.white,
+                                    thickness: 1,
+                                  ),
+                                ),
+                                Text("controller.incomes[index].ammount!",
+                                    style: Get.textTheme.bodyText1!
+                                        .copyWith(color: Colors.white)),
 
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10, bottom: 10),
-                      child: VerticalDivider(
-                        color: Colors.white,
-                        thickness: 1,
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                                  child: VerticalDivider(
+                                    color: Colors.white,
+                                    thickness: 1,
+                                  ),
+                                ),
+                                Text("controller.incomes[index].date!",
+                                    style: Get.textTheme.bodyText1!
+                                        .copyWith(color: Colors.white)),
+                              ],
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(height: 5);
+                        },
+                        itemCount: controller.incomes.length,
                       ),
-                    ),
-                    Text("12/12/2021",
-                        style: Get.textTheme.bodyText1!
-                            .copyWith(color: Colors.white)),
-                  ],
-                ),
-              )
+              ),
             ]),
       ),
     );

@@ -54,7 +54,8 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Lottery',
                   width: 12,
                   onTap: () {
-                    Get.to(() => const LotteryScreen(), binding: InitialBinding());
+                    Get.to(() => const LotteryScreen(),
+                        binding: InitialBinding());
                   },
                 ),
                 DrawerTile(
@@ -62,7 +63,8 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Income',
                   width: 12,
                   onTap: () {
-                    Get.to(() => const IncomeScreen());
+                    Get.to(() => const IncomeScreen(),
+                        binding: InitialBinding());
                   },
                 ),
                 // drawer_data(
