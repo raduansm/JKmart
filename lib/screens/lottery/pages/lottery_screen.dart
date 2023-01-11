@@ -35,7 +35,8 @@ class LotteryScreen extends GetView<LotteryController> {
                           child: CircleAvatar(
                             radius: 20,
                             backgroundColor: CustomColor.secondaryColor,
-                            child: Image.asset('assets/images/menu.png', scale: 5),
+                            child:
+                                Image.asset('assets/images/menu.png', scale: 5),
                           ),
                         ),
                         const Text(

@@ -1,7 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:get/get.dart';
-import 'package:jkmart/screens/expense/model/expense_model.dart';
+import 'package:jkmart/data/models/expense_model.dart';
 
 class ExpenseController extends GetxController {
   final String collectionId = "634f40a9c1be74eb6ae6";

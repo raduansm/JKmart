@@ -3,20 +3,31 @@ import 'package:appwrite/appwrite.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:jkmart/core/network/network_info.dart';
+import 'package:jkmart/data/datasources/income_datasource.dart';
 import 'package:jkmart/data/datasources/lottery_datasource.dart';
+import 'package:jkmart/data/repositories/income_repository.dart';
 import 'package:jkmart/data/repositories/lottery_repository.dart';
 
 final sl = GetIt.instance; //sl is referred to as Service Locator
 
 Future<void> init() async {
   //*Repositories
-  sl.registerLazySingleton<LotteryRepository>(() => LotteryRepository(dataSource: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<LotteryRepository>(
+      () => LotteryRepository(dataSource: sl(), networkInfo: sl()));
 
   //*Data Sources
-  sl.registerLazySingleton<LotteryDataSource>(() => LotteryDataSource(db: sl(), client: sl()));
+  sl.registerLazySingleton<LotteryDataSource>(
+      () => LotteryDataSource(db: sl(), client: sl()));
+
+  sl.registerLazySingleton<IncomeRepository>(
+      () => IncomeRepository(dataSource: sl(), networkInfo: sl()));
+
+  sl.registerLazySingleton<IncomeDataSource>(
+      () => IncomeDataSource(db: sl(), client: sl()));
 
   //Core
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(dataConnectionChecker: sl()));
+  sl.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(dataConnectionChecker: sl()));
 
   //Intialize
 

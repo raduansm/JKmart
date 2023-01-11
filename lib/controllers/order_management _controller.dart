@@ -2,7 +2,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jkmart/screens/order_management/model/order_model.dart';
+import 'package:jkmart/data/models/order_model.dart';
 
 class OrderManagementController extends GetxController {
   final formKey = GlobalKey<FormState>();

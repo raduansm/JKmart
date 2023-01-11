@@ -1,30 +1,30 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
-import 'package:jkmart/data/models/income_model.dart';
+import 'package:jkmart/data/models/expense_model.dart';
 
-class IncomeDataSource {
+class ExpenseDataSource {
   final Databases db;
   final Client client;
-
-  IncomeDataSource({required this.db, required this.client});
-
-  final _collectionId = '636de2f5ab93330faeed';
   final _uniqueId = 'unique()';
 
-  Future<List<IncomeModel>> getIncomes() async {
+  ExpenseDataSource({required this.db, required this.client});
+
+  final _collectionId = '6362875432b3fd33c793';
+
+  Future<List<ExpenseModel>> getExpenses() async {
     final response = await db.listDocuments(collectionId: _collectionId);
 
-    final incomes = List<IncomeModel>.from(
-        response.documents.map((e) => IncomeModel.fromJson(e.data)));
+    final expenses = List<ExpenseModel>.from(
+        response.documents.map((e) => ExpenseModel.fromJson(e.data)));
 
-    return incomes;
+    return expenses;
   }
 
-  Future<void> addIncome(
+  Future<void> addExpense(
       {required String vendor,
       required String amount,
       required String date}) async {
-    final IncomeModel payload = IncomeModel(
+    final ExpenseModel payload = ExpenseModel(
       vendor: vendor,
       amount: amount,
       date: date,

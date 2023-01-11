@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jkmart/controllers/order_management%20_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
+import 'package:jkmart/screens/home/widgets/appdrawer.dart';
 import 'package:jkmart/screens/order_management/pages/new_order.dart';
 
 class OrderManagementScreen extends GetView<OrderManagementController> {
@@ -9,10 +10,11 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: CustomColor.primaryColor,
-        body: Container(
+    return Scaffold(
+      backgroundColor: CustomColor.primaryColor,
+      drawer: const AppDrawer(),
+      body: SafeArea(
+        child: Container(
             child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           children: [
