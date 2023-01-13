@@ -4,6 +4,7 @@ import 'package:jkmart/controllers/expense_controller.dart';
 import 'package:jkmart/controllers/home_controller.dart';
 import 'package:jkmart/controllers/income_controller.dart';
 import 'package:jkmart/controllers/lottery_controller.dart';
+import 'package:jkmart/data/repositories/expense_repository.dart';
 import 'package:jkmart/data/repositories/income_repository.dart';
 import 'package:jkmart/data/repositories/lottery_repository.dart';
 import 'package:jkmart/injection_container.dart';
@@ -17,6 +18,7 @@ class InitialBinding extends Bindings {
         () => IncomeController(repository: sl<IncomeRepository>()));
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => AuthController());
-    Get.lazyPut(() => ExpenseController());
+    Get.lazyPut<ExpenseController>(
+        () => ExpenseController(repository: sl<ExpenseRepository>()));
   }
 }

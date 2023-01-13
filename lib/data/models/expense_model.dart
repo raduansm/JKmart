@@ -19,8 +19,8 @@ class ExpenseModel {
   });
 
   String? name;
-  int? date;
-  int? amount;
+  String? date;
+  String? amount;
   List<dynamic>? read;
   List<dynamic>? write;
   String? id;
@@ -48,10 +48,10 @@ class ExpenseModel {
         "name": name,
         "date": date,
         "amount": amount,
-        // "\u0024read":
-        //     read == null ? [] : List<dynamic>.from(read!.map((x) => x)),
-        // "\u0024write":
-        //     write == null ? [] : List<dynamic>.from(write!.map((x) => x)),
+        "\u0024read":
+            read == null ? [] : List<dynamic>.from(read!.map((x) => x)),
+        "\u0024write":
+            write == null ? [] : List<dynamic>.from(write!.map((x) => x)),
         "\u0024id": id,
         "\u0024createdAt": createdAt,
         "\u0024updatedAt": updatedAt,

@@ -3,8 +3,10 @@ import 'package:appwrite/appwrite.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:jkmart/core/network/network_info.dart';
+import 'package:jkmart/data/datasources/expense_datasource.dart';
 import 'package:jkmart/data/datasources/income_datasource.dart';
 import 'package:jkmart/data/datasources/lottery_datasource.dart';
+import 'package:jkmart/data/repositories/expense_repository.dart';
 import 'package:jkmart/data/repositories/income_repository.dart';
 import 'package:jkmart/data/repositories/lottery_repository.dart';
 
@@ -24,6 +26,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<IncomeDataSource>(
       () => IncomeDataSource(db: sl(), client: sl()));
+
+  sl.registerLazySingleton<ExpenseRepository>(
+      () => ExpenseRepository(dataSource: sl(), networkInfo: sl()));
+
+  sl.registerLazySingleton<ExpenseDataSource>(
+      () => ExpenseDataSource(db: sl(), client: sl()));
 
   //Core
   sl.registerLazySingleton<NetworkInfo>(

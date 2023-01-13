@@ -21,11 +21,11 @@ class ExpenseDataSource {
   }
 
   Future<void> addExpense(
-      {required String vendor,
+      {required String name,
       required String amount,
       required String date}) async {
     final ExpenseModel payload = ExpenseModel(
-      vendor: vendor,
+      name: name,
       amount: amount,
       date: date,
     );
