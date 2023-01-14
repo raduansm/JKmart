@@ -136,6 +136,7 @@ class AddExpense extends GetView<ExpenseController> {
                             ],
                           ),
                         ),
+
                         // const Divider(
                         //   color: Colors.white,
                         //   thickness: 1,

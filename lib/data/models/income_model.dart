@@ -1,15 +1,16 @@
 import 'dart:convert';
 
-IncomeModel incomeModelFromJson(String str) =>
+IncomeModel? incomeModelFromJson(String str) =>
     IncomeModel.fromJson(json.decode(str));
 
-String incomeModelToJson(IncomeModel data) => json.encode(data.toJson());
+String incomeModelToJson(IncomeModel? data) => json.encode(data!.toJson());
 
 class IncomeModel {
   IncomeModel({
     this.vendor,
     this.date,
     this.amount,
+    this.type,
     this.read,
     this.write,
     this.id,
@@ -21,8 +22,9 @@ class IncomeModel {
   String? vendor;
   String? date;
   String? amount;
-  List<dynamic>? read;
-  List<dynamic>? write;
+  String? type;
+  List<String?>? read;
+  List<String?>? write;
   String? id;
   int? createdAt;
   int? updatedAt;
@@ -32,8 +34,13 @@ class IncomeModel {
         vendor: json["vendor"],
         date: json["date"],
         amount: json["amount"],
-        read: List<dynamic>.from(json["\u0024read"].map((x) => x)),
-        write: List<dynamic>.from(json["\u0024write"].map((x) => x)),
+        type: json["type"],
+        read: json["\u0024read"] == null
+            ? []
+            : List<String?>.from(json["\u0024read"]!.map((x) => x)),
+        write: json["\u0024write"] == null
+            ? []
+            : List<String?>.from(json["\u0024write"]!.map((x) => x)),
         id: json["\u0024id"],
         createdAt: json["\u0024createdAt"],
         updatedAt: json["\u0024updatedAt"],
@@ -44,8 +51,11 @@ class IncomeModel {
         "vendor": vendor,
         "date": date,
         "amount": amount,
-        // "\u0024read": List<dynamic>.from(read!.map((x) => x)),
-        // "\u0024write": List<dynamic>.from(write!.map((x) => x)),
+        "type": type,
+        "\u0024read":
+            read == null ? [] : List<dynamic>.from(read!.map((x) => x)),
+        "\u0024write":
+            write == null ? [] : List<dynamic>.from(write!.map((x) => x)),
         "\u0024id": id,
         "\u0024createdAt": createdAt,
         "\u0024updatedAt": updatedAt,

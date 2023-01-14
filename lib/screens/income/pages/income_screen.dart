@@ -81,6 +81,15 @@ class IncomeScreen extends GetView<IncomeController> {
                                 isSolidButton: true,
                                 color: CustomColor.secondaryColor,
                               ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: GlobalBottomButton(
+                                text: "Type",
+                                onPressed: () {},
+                                isSolidButton: true,
+                                color: CustomColor.secondaryColor,
+                              ),
                             )
                           ],
                         ),
@@ -97,7 +106,7 @@ class IncomeScreen extends GetView<IncomeController> {
                             color: CustomColor.secondaryColor,
                             child: Padding(
                               padding:
-                                  const EdgeInsets.only(left: 10, right: 0),
+                                  const EdgeInsets.only(left: 20, right: 0),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -108,7 +117,7 @@ class IncomeScreen extends GetView<IncomeController> {
                                         style: Get.textTheme.bodyText1!
                                             .copyWith(color: Colors.white)),
                                   ),
-                                  const SizedBox(width: 1),
+                                  const SizedBox(width: 10),
                                   // const Padding(
                                   //   padding:
                                   //       EdgeInsets.only(top: 10, bottom: 10),
@@ -123,6 +132,7 @@ class IncomeScreen extends GetView<IncomeController> {
                                         style: Get.textTheme.bodyText1!
                                             .copyWith(color: Colors.white)),
                                   ),
+                                  const SizedBox(width: 10),
                                   // const Padding(
                                   //   padding:
                                   //       EdgeInsets.only(top: 10, bottom: 10),
@@ -133,6 +143,13 @@ class IncomeScreen extends GetView<IncomeController> {
                                   // ),
                                   Expanded(
                                     child: Text(controller.incomes[index].date!,
+                                        style: Get.textTheme.bodyText1!
+                                            .copyWith(color: Colors.white)),
+                                  ),
+                                  const SizedBox(width: 10),
+
+                                  Expanded(
+                                    child: Text(controller.incomes[index].type!,
                                         style: Get.textTheme.bodyText1!
                                             .copyWith(color: Colors.white)),
                                   ),
