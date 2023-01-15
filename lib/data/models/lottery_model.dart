@@ -16,6 +16,8 @@ class LotteryModel {
     this.createdAt,
     this.updatedAt,
     this.collection,
+    this.gameId,
+    this.date,
   });
 
   String? serial;
@@ -28,6 +30,8 @@ class LotteryModel {
   int? createdAt;
   int? updatedAt;
   String? collection;
+  String? date;
+  int? gameId;
 
   factory LotteryModel.fromJson(Map<String, dynamic> json) => LotteryModel(
         serial: json["serial"],
@@ -40,6 +44,8 @@ class LotteryModel {
         createdAt: json["\u0024createdAt"],
         updatedAt: json["\u0024updatedAt"],
         collection: json["\u0024collection"],
+        gameId: json["gameId"],
+        date: json["date"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -47,12 +53,14 @@ class LotteryModel {
         "start": start,
         "close": close,
         "total": total,
-        // "\u0024read": List<dynamic>.from(read!.map((x) => x)),
-        // "\u0024write": List<dynamic>.from(write!.map((x) => x)),
+        "\u0024read": List<dynamic>.from(read!.map((x) => x)),
+        "\u0024write": List<dynamic>.from(write!.map((x) => x)),
         "\u0024id": id,
         "\u0024createdAt": createdAt,
         "\u0024updatedAt": updatedAt,
         "\u0024collection": collection,
+        "date": date,
+        "gameId": gameId,
       };
 }
 

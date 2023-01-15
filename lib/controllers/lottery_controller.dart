@@ -26,6 +26,7 @@ class LotteryController extends GetxController {
   TextEditingController startController = TextEditingController();
   TextEditingController closeController = TextEditingController();
   TextEditingController totalController = TextEditingController();
+  Rx<DateTime> selectedDate = DateTime.now().obs;
 
   ///Form key to validate all the fields of add lottery
   final formKey = GlobalKey<FormState>();
@@ -35,6 +36,11 @@ class LotteryController extends GetxController {
     super.onInit();
 
     getLotteries();
+  }
+
+  void updateDate(DateTime date) {
+    selectedDate.value = date;
+    update();
   }
 
   String? addLotteryFieldsValidator(value) {

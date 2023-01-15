@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:jkmart/controllers/lottery_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/core/widgets/global_bottom_button.dart';
+import 'package:jkmart/core/widgets/global_cupertino_datepicker.dart';
 import 'package:jkmart/core/widgets/global_text_field.dart';
 
 class AddLottery extends GetView<LotteryController> {
@@ -152,6 +155,39 @@ class AddLottery extends GetView<LotteryController> {
                                   controller: controller.totalController,
                                 ),
                               )
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        SizedBox(
+                          // height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              const SizedBox(
+                                width: 50,
+                                child: Text(
+                                  "Date:",
+                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Obx(
+                                () => Expanded(
+                                  child: GlobalCupertinoDatePicker(
+                                    onDateChanged: (DateTime date) {
+                                      controller.updateDate(date);
+                                    },
+                                    initialDateTime: controller.selectedDate.value,
+                                    label: DateFormat("dd-MMM-yy").format(controller.selectedDate.value),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
