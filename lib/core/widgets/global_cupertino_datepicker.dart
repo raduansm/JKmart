@@ -16,6 +16,7 @@ class GlobalCupertinoDatePicker extends StatelessWidget {
     this.boxBackgroundColor,
     this.boxRarius,
     required this.onDateChanged,
+    this.onComplete,
   }) : super(key: key);
 
   final String? label;
@@ -27,6 +28,7 @@ class GlobalCupertinoDatePicker extends StatelessWidget {
   final Color? boxBackgroundColor;
   final double? boxRarius;
   final ValueChanged<DateTime> onDateChanged;
+  final Function(dynamic)? onComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class GlobalCupertinoDatePicker extends StatelessWidget {
                   mode: CupertinoDatePickerMode.date,
                 ),
               );
-            });
+            }).then(onComplete ?? (value) {});
       },
       child: Container(
         height: boxHeight ?? 45,
