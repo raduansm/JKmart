@@ -76,7 +76,11 @@ class LotteryController extends GetxController {
 
     isAddingLottery.value = true;
 
-    final result = await repository.addLottery(serial: serialController.text, start: startController.text, close: closeController.text, total: totalController.text);
+    final result = await repository.addLottery(
+        serial: serialController.text,
+        start: startController.text,
+        close: closeController.text,
+        total: totalController.text);
 
     result.fold((l) {
       Get.back();

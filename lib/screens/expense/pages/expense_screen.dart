@@ -33,16 +33,13 @@ class ExpenseScreen extends GetView<ExpenseController> {
                             child: CircleAvatar(
                               radius: 20,
                               backgroundColor: CustomColor.secondaryColor,
-                              child: Image.asset('assets/images/menu.png', scale: 5),
+                              child: Image.asset('assets/images/menu.png',
+                                  scale: 5),
                             ),
                           ),
-                          const Text(
+                          Text(
                             'Expense',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Get.textTheme.headline2,
                           ),
                           const AddExpense(),
                         ],
@@ -53,31 +50,25 @@ class ExpenseScreen extends GetView<ExpenseController> {
                         width: 180,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: CustomColor.secondaryColor, width: 10),
+                          border: Border.all(
+                              color: CustomColor.secondaryColor, width: 10),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
                               'Total Expense',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Get.textTheme.headline4,
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               '1000 \$',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Get.textTheme.headline4,
                             ),
                           ],
                         ),
                       ),
+                      const SizedBox(height: 20),
                       Column(
                         children: [
                           Row(
@@ -123,44 +114,28 @@ class ExpenseScreen extends GetView<ExpenseController> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
                               'Name',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Get.textTheme.headline5,
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 30),
                               child: Text(
                                 'Date',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Get.textTheme.headline5,
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 0),
                               child: Text(
                                 'Amount',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Get.textTheme.headline5,
                               ),
                             ),
                             Text(
                               'Type',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Get.textTheme.headline5,
                             ),
                           ],
                         ),
@@ -177,7 +152,8 @@ class ExpenseScreen extends GetView<ExpenseController> {
                             ),
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                              padding: const EdgeInsets.only(
+                                  left: 15.0, right: 15.0),
                               child: Row(
                                 // mainAxisAlignment:
                                 //     MainAxisAlignment.spaceBetween,
@@ -186,31 +162,19 @@ class ExpenseScreen extends GetView<ExpenseController> {
                                     child: Text(
                                       controller.expenses[index].name!,
                                       // "REDWAN KHONDOKAR SAHA ALI RAHMAN",
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: Get.textTheme.subtitle1,
                                     ),
                                   ),
-                                  const Expanded(
+                                  Expanded(
                                     child: Text(
                                       "13-02-22",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: Get.textTheme.subtitle1,
                                     ),
                                   ),
                                   Expanded(
                                     child: Text(
                                       controller.expenses[index].amount!,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: Get.textTheme.subtitle1,
                                     ),
                                   ),
                                   Container(

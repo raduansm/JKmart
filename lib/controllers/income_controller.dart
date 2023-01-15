@@ -17,12 +17,28 @@ class IncomeController extends GetxController {
   TextEditingController vendorController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController amountController = TextEditingController();
+  Rx<DateTime> selectedDate = DateTime.now().obs;
 
   @override
   void onInit() {
     super.onInit();
 
     getIncomes();
+  }
+
+  void updateDate(DateTime date) {
+    selectedDate.value = date;
+    update();
+  }
+
+  String? addIncomeFieldsValidator(value) {
+    if (value!.isEmpty) {
+      return "This field is required";
+    } else if (int.tryParse(value) == null) {
+      return "Please enter number only. Example: 27";
+    } else {
+      return null;
+    }
   }
 
   Future<void> getIncomes() async {

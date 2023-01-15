@@ -38,59 +38,47 @@ class IncomeScreen extends GetView<IncomeController> {
                                   scale: 5),
                             ),
                           ),
-                          const Text(
+                          Text(
                             'Income',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Get.textTheme.headline2,
                           ),
                           const AddIncome(),
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
-                      ),
-                      Container(
                         height: 40,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20.0, right: 15.0, top: 10.0, bottom: 10.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: GlobalBottomButton(
-                                text: "Name",
-                                onPressed: () {},
-                                isSolidButton: true,
-                                color: CustomColor.secondaryColor,
+                            Text(
+                              'Name',
+                              style: Get.textTheme.headline5,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15.0),
+                              child: Text(
+                                'Amount',
+                                style: Get.textTheme.headline5,
                               ),
                             ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: GlobalBottomButton(
-                                text: "Amount",
-                                onPressed: () {},
-                                isSolidButton: true,
-                                color: CustomColor.secondaryColor,
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: Text(
+                                'Date',
+                                style: Get.textTheme.headline5,
                               ),
                             ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: GlobalBottomButton(
-                                text: "Date",
-                                onPressed: () {},
-                                isSolidButton: true,
-                                color: CustomColor.secondaryColor,
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Text(
+                                'Type',
+                                style: Get.textTheme.headline5,
                               ),
                             ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: GlobalBottomButton(
-                                text: "Type",
-                                onPressed: () {},
-                                isSolidButton: true,
-                                color: CustomColor.secondaryColor,
-                              ),
-                            )
                           ],
                         ),
                       ),
@@ -102,56 +90,50 @@ class IncomeScreen extends GetView<IncomeController> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           return Container(
-                            height: 40,
-                            color: CustomColor.secondaryColor,
+                            decoration: BoxDecoration(
+                              color: CustomColor.secondaryColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 0),
+                              padding: const EdgeInsets.only(
+                                  left: 20.0, right: 15.0),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Expanded(
                                     child: Text(
-                                        controller.incomes[index].vendor!,
-                                        style: Get.textTheme.bodyText1!
-                                            .copyWith(color: Colors.white)),
+                                      controller.incomes[index].vendor!,
+                                      style: Get.textTheme.subtitle1,
+                                    ),
                                   ),
-                                  const SizedBox(width: 10),
-                                  // const Padding(
-                                  //   padding:
-                                  //       EdgeInsets.only(top: 10, bottom: 10),
-                                  //   child: VerticalDivider(
-                                  //     color: Colors.white,
-                                  //     thickness: 1,
-                                  //   ),
-                                  // ),
                                   Expanded(
-                                    child: Text(
-                                        controller.incomes[index].amount!,
-                                        style: Get.textTheme.bodyText1!
-                                            .copyWith(color: Colors.white)),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 15.0),
+                                      child: Text(
+                                          controller.incomes[index].amount!,
+                                          style: Get.textTheme.subtitle1),
+                                    ),
                                   ),
-                                  const SizedBox(width: 10),
-                                  // const Padding(
-                                  //   padding:
-                                  //       EdgeInsets.only(top: 10, bottom: 10),
-                                  //   child: VerticalDivider(
-                                  //     color: Colors.white,
-                                  //     thickness: 1,
-                                  //   ),
-                                  // ),
                                   Expanded(
-                                    child: Text(controller.incomes[index].date!,
-                                        style: Get.textTheme.bodyText1!
-                                            .copyWith(color: Colors.white)),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 30.0),
+                                      child: Text(
+                                          controller.incomes[index].date!,
+                                          style: Get.textTheme.subtitle1),
+                                    ),
                                   ),
-                                  const SizedBox(width: 10),
-
                                   Expanded(
-                                    child: Text(controller.incomes[index].type!,
-                                        style: Get.textTheme.bodyText1!
-                                            .copyWith(color: Colors.white)),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 35.0),
+                                      child: Text(
+                                          controller.incomes[index].type!,
+                                          style: Get.textTheme.subtitle1),
+                                    ),
                                   ),
                                 ],
                               ),

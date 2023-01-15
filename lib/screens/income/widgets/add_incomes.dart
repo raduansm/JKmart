@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:jkmart/controllers/income_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/core/widgets/global_bottom_button.dart';
+import 'package:jkmart/core/widgets/global_cupertino_datepicker.dart';
 import 'package:jkmart/core/widgets/global_text_field.dart';
 
 class AddIncome extends GetView<IncomeController> {
@@ -26,6 +28,7 @@ class AddIncome extends GetView<IncomeController> {
                     height: 400,
                     width: Get.size.width,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Align(
                           alignment: Alignment.centerRight,
@@ -40,93 +43,57 @@ class AddIncome extends GetView<IncomeController> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 50,
-                                child: Text(
-                                  "Vendor:",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Expanded(
-                                  child: GlobalTextField(
-                                textAlign: TextAlign.center,
-                                keyboardType: TextInputType.number,
-                                controller: controller.vendorController,
-                              ))
-                            ],
-                          ),
+                        Text(
+                          "Vendor:",
+                          style: Get.textTheme.headline4,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        GlobalTextField(
+                          validator: controller.addIncomeFieldsValidator,
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.name,
+                          controller: controller.vendorController,
                         ),
                         const Divider(
                           color: Colors.white,
-                          thickness: 1,
+                          thickness: 2,
                         ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 50,
-                                child: Text(
-                                  "Amount:",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Flexible(
-                                  child: GlobalTextField(
-                                textAlign: TextAlign.center,
-                                keyboardType: TextInputType.number,
-                                controller: controller.amountController,
-                              ))
-                            ],
-                          ),
+                        Text(
+                          "Amount:",
+                          style: Get.textTheme.headline4,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        GlobalTextField(
+                          validator: controller.addIncomeFieldsValidator,
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          controller: controller.amountController,
                         ),
                         const Divider(
                           color: Colors.white,
-                          thickness: 1,
+                          thickness: 2,
                         ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 50,
-                                child: Text(
-                                  "Date:",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Flexible(
-                                  child: GlobalTextField(
-                                textAlign: TextAlign.center,
-                                keyboardType: TextInputType.number,
-                                controller: controller.dateController,
-                              ))
-                            ],
+                        Text(
+                          "Date:",
+                          style: Get.textTheme.headline4,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Obx(
+                          () => Expanded(
+                            child: GlobalCupertinoDatePicker(
+                              onDateChanged: (DateTime date) {
+                                controller.updateDate(date);
+                              },
+                              initialDateTime: controller.selectedDate.value,
+                              label: DateFormat("dd-MMM-yy")
+                                  .format(controller.selectedDate.value),
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -141,6 +108,7 @@ class AddIncome extends GetView<IncomeController> {
                             )),
                             child: GlobalBottomButton(
                               text: "ADD",
+                              style: Get.textTheme.headline4,
                               onPressed: () {
                                 controller.addIncome();
                               },

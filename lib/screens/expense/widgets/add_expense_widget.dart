@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:jkmart/controllers/expense_controller.dart';
 import 'package:jkmart/controllers/lottery_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/core/widgets/global_bottom_button.dart';
+import 'package:jkmart/core/widgets/global_cupertino_datepicker.dart';
 import 'package:jkmart/core/widgets/global_text_field.dart';
 
 class AddExpense extends GetView<ExpenseController> {
@@ -42,9 +44,9 @@ class AddExpense extends GetView<ExpenseController> {
                         ),
                         const SizedBox(height: 20),
 
-                        const Text(
+                        Text(
                           "Name of Expense:",
-                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          style: Get.textTheme.headline4,
                         ),
                         const SizedBox(
                           height: 5,
@@ -54,65 +56,45 @@ class AddExpense extends GetView<ExpenseController> {
                           keyboardType: TextInputType.number,
                           controller: controller.nameController,
                         ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 2,
+                        ),
+                        Text(
+                          "Amount:",
+                          style: Get.textTheme.headline4,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        GlobalTextField(
+                          validator: controller.addExpenseFieldsValidator,
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.name,
+                          controller: controller.amountController,
+                        ),
 
                         const Divider(
                           color: Colors.white,
-                          thickness: 1,
+                          thickness: 2,
                         ),
-                        SizedBox(
-                          // height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 50,
-                                child: Text(
-                                  "Date:",
-                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Flexible(
-                                child: GlobalTextField(
-                                  validator: controller.addExpenseFieldsValidator,
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  controller: controller.dateController,
-                                ),
-                              ),
-                            ],
-                          ),
+
+                        Text(
+                          "Date:",
+                          style: Get.textTheme.headline4,
                         ),
-                        const Divider(
-                          color: Colors.white,
-                          thickness: 1,
+
+                        const SizedBox(
+                          width: 15,
                         ),
-                        SizedBox(
-                          // height: 100,
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 50,
-                                child: Text(
-                                  "Amount:",
-                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Flexible(
-                                child: GlobalTextField(
-                                  validator: controller.addExpenseFieldsValidator,
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  controller: controller.amountController,
-                                ),
-                              ),
-                            ],
+                        Obx(
+                          () => GlobalCupertinoDatePicker(
+                            onDateChanged: (DateTime date) {
+                              controller.updateDate(date);
+                            },
+                            initialDateTime: controller.selectedDate.value,
+                            label: DateFormat("dd-MMM-yy")
+                                .format(controller.selectedDate.value),
                           ),
                         ),
 
@@ -132,6 +114,7 @@ class AddExpense extends GetView<ExpenseController> {
                             )),
                             child: GlobalBottomButton(
                               text: "ADD",
+                              style: Get.textTheme.headline4,
                               onPressed: () {
                                 controller.addExpense();
                               },

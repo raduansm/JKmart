@@ -24,6 +24,7 @@ class ExpenseController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController amountController = TextEditingController();
+  Rx<DateTime> selectedDate = DateTime.now().obs;
 
   final formKey = GlobalKey<FormState>();
 
@@ -32,6 +33,11 @@ class ExpenseController extends GetxController {
     super.onInit();
 
     getExpenses();
+  }
+
+  void updateDate(DateTime date) {
+    selectedDate.value = date;
+    update();
   }
 
   String? addExpenseFieldsValidator(value) {
