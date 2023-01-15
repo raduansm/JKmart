@@ -33,8 +33,7 @@ class ExpenseScreen extends GetView<ExpenseController> {
                             child: CircleAvatar(
                               radius: 20,
                               backgroundColor: CustomColor.secondaryColor,
-                              child: Image.asset('assets/images/menu.png',
-                                  scale: 5),
+                              child: Image.asset('assets/images/menu.png', scale: 5),
                             ),
                           ),
                           const Text(
@@ -54,8 +53,7 @@ class ExpenseScreen extends GetView<ExpenseController> {
                         width: 180,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(
-                              color: CustomColor.secondaryColor, width: 10),
+                          border: Border.all(color: CustomColor.secondaryColor, width: 10),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -80,6 +78,46 @@ class ExpenseScreen extends GetView<ExpenseController> {
                           ],
                         ),
                       ),
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 15,
+                                      width: 15,
+                                      color: Colors.red,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      "Pull tab payout",
+                                      style: Get.textTheme.headline5,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 15,
+                                      width: 15,
+                                      color: Colors.blue,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      "Pull tab payout",
+                                      style: Get.textTheme.headline5,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                       const SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -94,20 +132,26 @@ class ExpenseScreen extends GetView<ExpenseController> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text(
-                              'Date',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                            Padding(
+                              padding: EdgeInsets.only(left: 30),
+                              child: Text(
+                                'Date',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                            Text(
-                              'Amount',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                            Padding(
+                              padding: EdgeInsets.only(left: 0),
+                              child: Text(
+                                'Amount',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             Text(
@@ -126,14 +170,14 @@ class ExpenseScreen extends GetView<ExpenseController> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           return Container(
-                            height: 40,
+                            // height: 40,
                             decoration: BoxDecoration(
                               color: CustomColor.secondaryColor,
                               borderRadius: BorderRadius.circular(8),
                             ),
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15.0, right: 15.0),
+                              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                               child: Row(
                                 // mainAxisAlignment:
                                 //     MainAxisAlignment.spaceBetween,
@@ -141,6 +185,7 @@ class ExpenseScreen extends GetView<ExpenseController> {
                                   Expanded(
                                     child: Text(
                                       controller.expenses[index].name!,
+                                      // "REDWAN KHONDOKAR SAHA ALI RAHMAN",
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
@@ -148,20 +193,10 @@ class ExpenseScreen extends GetView<ExpenseController> {
                                       ),
                                     ),
                                   ),
-                                  Expanded(
+                                  const Expanded(
                                     child: Text(
-                                      controller.expenses[index].date!,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      controller.expenses[index].amount!,
-                                      style: const TextStyle(
+                                      "13-02-22",
+                                      style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold,
@@ -177,6 +212,11 @@ class ExpenseScreen extends GetView<ExpenseController> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
+                                  ),
+                                  Container(
+                                    height: 15,
+                                    width: 15,
+                                    color: Colors.red,
                                   ),
                                 ],
                               ),

@@ -26,6 +26,7 @@ class AddExpense extends GetView<ExpenseController> {
                   content: Form(
                     key: controller.formKey,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Align(
                           alignment: Alignment.centerRight,
@@ -40,34 +41,20 @@ class AddExpense extends GetView<ExpenseController> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        SizedBox(
-                          // height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 50,
-                                child: Text(
-                                  "Name of Expense:",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Expanded(
-                                child: GlobalTextField(
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  controller: controller.nameController,
-                                ),
-                              ),
-                            ],
-                          ),
+
+                        const Text(
+                          "Name of Expense:",
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        GlobalTextField(
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          controller: controller.nameController,
+                        ),
+
                         const Divider(
                           color: Colors.white,
                           thickness: 1,
@@ -81,10 +68,7 @@ class AddExpense extends GetView<ExpenseController> {
                                 width: 50,
                                 child: Text(
                                   "Date:",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const SizedBox(
@@ -92,8 +76,7 @@ class AddExpense extends GetView<ExpenseController> {
                               ),
                               Flexible(
                                 child: GlobalTextField(
-                                  validator:
-                                      controller.addExpenseFieldsValidator,
+                                  validator: controller.addExpenseFieldsValidator,
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   controller: controller.dateController,
@@ -115,10 +98,7 @@ class AddExpense extends GetView<ExpenseController> {
                                 width: 50,
                                 child: Text(
                                   "Amount:",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const SizedBox(
@@ -126,8 +106,7 @@ class AddExpense extends GetView<ExpenseController> {
                               ),
                               Flexible(
                                 child: GlobalTextField(
-                                  validator:
-                                      controller.addExpenseFieldsValidator,
+                                  validator: controller.addExpenseFieldsValidator,
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   controller: controller.amountController,
