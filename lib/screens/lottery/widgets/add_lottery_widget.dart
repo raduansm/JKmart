@@ -50,6 +50,72 @@ class AddLottery extends GetView<LotteryController> {
                               const SizedBox(
                                 width: 50,
                                 child: Text(
+                                  "Game:",
+                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showCupertinoModalPopup(
+                                        context: context,
+                                        builder: (context) {
+                                          return SizedBox(
+                                            height: 250,
+                                            child: CupertinoPicker.builder(
+                                              childCount: controller.games.length,
+                                              itemExtent: 25,
+                                              backgroundColor: Colors.white,
+                                              onSelectedItemChanged: (index) {
+                                                controller.selectedGameIndex.value = index;
+                                              },
+                                              itemBuilder: (context, index) {
+                                                return Text(
+                                                  controller.games[index].gameId.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: Get.textTheme.headline4?.copyWith(color: Colors.black),
+                                                );
+                                              },
+                                            ),
+                                          );
+                                        });
+                                  },
+                                  child: Container(
+                                    // height: 45,
+                                    alignment: Alignment.center,
+                                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 3),
+                                    decoration: BoxDecoration(
+                                      color: CustomColor.grey3,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Text(
+                                      // "Bear Grylls is a man of steel",
+                                      "${controller.games[controller.selectedGameIndex.value].gameId ?? ""}",
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.visible,
+                                      style: Get.textTheme.headline4,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        SizedBox(
+                          // height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              const SizedBox(
+                                width: 50,
+                                child: Text(
                                   "Serial:",
                                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
