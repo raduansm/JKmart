@@ -7,6 +7,7 @@ import 'package:jkmart/screens/home/widgets/drawer_data.dart';
 import 'package:jkmart/screens/income/pages/income_screen.dart';
 import 'package:jkmart/screens/lottery/pages/lottery_screen.dart';
 import 'package:jkmart/screens/order_management/pages/order_management.dart';
+import 'package:jkmart/screens/users/pages/users_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -46,8 +47,7 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Expense',
                   width: 12,
                   onTap: () {
-                    Get.to(() => const ExpenseScreen(),
-                        binding: InitialBinding());
+                    Get.to(() => const ExpenseScreen(), binding: InitialBinding());
                   },
                 ),
                 DrawerTile(
@@ -55,8 +55,7 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Lottery',
                   width: 12,
                   onTap: () {
-                    Get.to(() => const LotteryScreen(),
-                        binding: InitialBinding());
+                    Get.to(() => const LotteryScreen(), binding: InitialBinding());
                   },
                 ),
                 DrawerTile(
@@ -64,8 +63,15 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Income',
                   width: 12,
                   onTap: () {
-                    Get.to(() => const IncomeScreen(),
-                        binding: InitialBinding());
+                    Get.to(() => const IncomeScreen(), binding: InitialBinding());
+                  },
+                ),
+                DrawerTile(
+                  // imagePath: 'images/delivery_man.png',
+                  textData: 'Manage Users',
+                  width: 12,
+                  onTap: () {
+                    Get.to(() => const UsersScreen(), binding: InitialBinding());
                   },
                 ),
                 // drawer_data(

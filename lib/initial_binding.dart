@@ -12,13 +12,10 @@ import 'package:jkmart/injection_container.dart';
 class InitialBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<LotteryController>(
-        () => LotteryController(repository: sl<LotteryRepository>()));
-    Get.lazyPut<IncomeController>(
-        () => IncomeController(repository: sl<IncomeRepository>()));
-    Get.lazyPut(() => HomeController());
-    Get.lazyPut(() => AuthController());
-    Get.lazyPut<ExpenseController>(
-        () => ExpenseController(repository: sl<ExpenseRepository>()));
+    Get.lazyPut<LotteryController>(() => LotteryController(repository: sl<LotteryRepository>()));
+    Get.lazyPut<IncomeController>(() => IncomeController(repository: sl<IncomeRepository>()));
+    Get.lazyPut<HomeController>(() => HomeController());
+    Get.lazyPut<AuthController>(() => AuthController());
+    Get.lazyPut<ExpenseController>(() => ExpenseController(repository: sl<ExpenseRepository>()));
   }
 }
