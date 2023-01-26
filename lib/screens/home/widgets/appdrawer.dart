@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jkmart/controllers/auth_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/initial_binding.dart';
 import 'package:jkmart/screens/expense/pages/expense_screen.dart';
@@ -71,6 +72,7 @@ class AppDrawer extends StatelessWidget {
                   textData: 'Manage Users',
                   width: 12,
                   onTap: () {
+                    Get.find<AuthController>().getAllUsers();
                     Get.to(() => const UsersScreen(), binding: InitialBinding());
                   },
                 ),
@@ -91,7 +93,7 @@ class AppDrawer extends StatelessWidget {
                 textData: 'LOG OUT',
                 width: 10,
                 onTap: () {
-                  // BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                  Get.find<AuthController>().logoutUser();
                   print("Pressed! Logout!");
                 },
               ),

@@ -55,6 +55,7 @@ dependencies:
   fl_chart: ^0.55.1
   hovering: ^1.0.4
   appwrite: 7.0.0
+  dart_appwrite: 6.0.0
 
 dev_dependencies:
   flutter_test:

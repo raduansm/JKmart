@@ -1,4 +1,5 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:dart_appwrite/dart_appwrite.dart' as aws;
 
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -23,7 +24,7 @@ Future<void> init() async {
 
   //*Data Sources
   sl.registerLazySingleton<LotteryDataSource>(() => LotteryDataSource(db: sl(), client: sl()));
-  sl.registerLazySingleton<AuthDataSource>(() => AuthDataSource(account: sl()));
+  sl.registerLazySingleton<AuthDataSource>(() => AuthDataSource(account: sl(), users: sl()));
   sl.registerLazySingleton<IncomeDataSource>(() => IncomeDataSource(db: sl(), client: sl()));
   sl.registerLazySingleton<ExpenseDataSource>(() => ExpenseDataSource(db: sl(), client: sl()));
 
@@ -41,9 +42,16 @@ Future<void> init() async {
 
   final account = Account(client);
 
+  final users = aws.Users(aws.Client()
+      .setEndpoint('http://home.logstacks.com:8080/v1') // Your API Endpoint
+      .setProject('62dc48a91676c0ff925a') // Your project ID
+      .setKey("208a2bb1618663d963649bf2db2b1d8e2e751e4bb0ef9a25b7b063ef1abf854144ce31d83f2e4f960ac1a529115e8a2dc38d68147f72e9651258db6d96a901fdbf3343ba6cdd9d58a775407440ae17ef8076af05238713822c2072d16a37cb75f6afecd7189fb56e5aa18709b57298b292e8a5d38e6956ba2c162112be961839") //Project api key with all access
+      .setSelfSigned(status: true));
+
   //*External
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => client);
   sl.registerLazySingleton(() => db);
   sl.registerLazySingleton(() => account);
+  sl.registerLazySingleton(() => users);
 }

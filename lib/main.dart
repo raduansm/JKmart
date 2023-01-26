@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
       // fallbackLocale: Locale('en'),
       debugShowCheckedModeBanner: false,
       initialBinding: InitialBinding(),
-      scrollBehavior: const CupertinoScrollBehavior(),
-
+      // scrollBehavior: const CupertinoScrollBehavior(),
       theme: CustomTheme().mainTheme,
       // home: const SplashScreen(),
       // home: const HomePage(),

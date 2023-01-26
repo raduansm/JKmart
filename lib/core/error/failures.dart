@@ -13,6 +13,6 @@ class CacheFailure extends Failure {}
 
 class NoConnectionFailure extends Failure {}
 
-class EmailNotVerifiedFailure extends Failure {}
+class AuthenticationFailure extends Failure {}
 
-class AuthorizationFailure extends Failure {}
+class LoginFailure extends Failure {}
