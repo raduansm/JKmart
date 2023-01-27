@@ -10,7 +10,7 @@ import 'package:jkmart/screens/lottery/pages/lottery_screen.dart';
 import 'package:jkmart/screens/order_management/pages/order_management.dart';
 import 'package:jkmart/screens/users/pages/users_screen.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends GetView<AuthController> {
   const AppDrawer({Key? key}) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class AppDrawer extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Mr. X',
+                    controller.currentUser!.name,
                     style: Get.textTheme.headline4,
                   ),
                 ),
@@ -67,15 +67,16 @@ class AppDrawer extends StatelessWidget {
                     Get.to(() => const IncomeScreen(), binding: InitialBinding());
                   },
                 ),
-                DrawerTile(
-                  // imagePath: 'images/delivery_man.png',
-                  textData: 'Manage Users',
-                  width: 12,
-                  onTap: () {
-                    Get.find<AuthController>().getAllUsers();
-                    Get.to(() => const UsersScreen(), binding: InitialBinding());
-                  },
-                ),
+                if (controller.currentUser!.name == controller.userTypes[0])
+                  DrawerTile(
+                    // imagePath: 'images/delivery_man.png',
+                    textData: 'Manage Users',
+                    width: 12,
+                    onTap: () {
+                      Get.find<AuthController>().getAllUsers();
+                      Get.to(() => const UsersScreen(), binding: InitialBinding());
+                    },
+                  ),
                 // drawer_data(
                 //   imagePath: 'images/delivery_man.png',
                 //   textData: 'Contact',

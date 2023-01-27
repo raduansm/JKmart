@@ -1,3 +1,4 @@
+import 'package:appwrite/models.dart';
 import 'package:dart_appwrite/models.dart' as awm;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,8 @@ class AuthController extends GetxController {
     "Cashier",
     "Inventory Manager",
   ];
+
+  User? currentUser;
 
   //TextFields for signin scree
   TextEditingController emailController = TextEditingController();
@@ -66,6 +69,8 @@ class AuthController extends GetxController {
   Future<void> authenticateUser() async {
     isAuthenticating.value = true;
 
+    currentUser = null;
+
     final result = await repository.authenticateUser();
 
     result.fold((l) {
@@ -78,6 +83,7 @@ class AuthController extends GetxController {
         Get.snackbar("Something went wrong", "Please try again later");
       }
     }, (r) {
+      currentUser = r;
       Get.offAll(() => const HomeScreen(), binding: InitialBinding());
     });
 
@@ -114,7 +120,8 @@ class AuthController extends GetxController {
         Get.snackbar("Something went wrong", "Please try again later");
       }
     }, (r) {
-      Get.offAll(() => const HomeScreen(), binding: InitialBinding());
+      authenticateUser();
+      // Get.offAll(() => const HomeScreen(), binding: InitialBinding());
     });
 
     isLoggingIn.value = false;

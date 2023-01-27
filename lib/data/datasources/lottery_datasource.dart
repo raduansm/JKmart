@@ -31,18 +31,6 @@ class LotteryDataSource {
 
   Future<void> addLottery({required String serial, required String start, required String close, required String total, required int gameId, required DateTime date}) async {
     final LotteryModel payload = LotteryModel(serial: serial, start: start, close: close, total: total, gameId: gameId, date: DateUtils.dateOnly(date).toIso8601String(), read: [], write: [], createdAt: date.isBefore(DateTime.now()) ? date.toUtc().millisecondsSinceEpoch : DateTime.now().toUtc().millisecondsSinceEpoch);
-    //After login function added, this have to be removed
-    //Start remove section
-    Session? session;
-    try {
-      session = await Account(client).getSession(sessionId: 'current');
-    } catch (e) {
-      session = null;
-    }
-
-    if (session == null) await Account(client).createAnonymousSession();
-
-    //End remove section
 
     final response = await db.createDocument(collectionId: _collectionId, documentId: _uniqueId, data: payload.toJson());
   }
