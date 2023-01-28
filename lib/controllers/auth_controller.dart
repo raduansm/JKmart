@@ -84,7 +84,7 @@ class AuthController extends GetxController {
       }
     }, (r) {
       currentUser = r;
-      Get.offAll(() => const HomeScreen(), binding: InitialBinding());
+      Get.offAll(() => HomeScreen(), binding: InitialBinding());
     });
 
     isAuthenticating.value = false;

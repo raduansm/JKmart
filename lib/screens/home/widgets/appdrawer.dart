@@ -34,39 +34,42 @@ class AppDrawer extends GetView<AuthController> {
                   thickness: 2,
                   color: Colors.white,
                 ),
-
-                DrawerTile(
-                  // imagePath: 'images/delivery_man.png',
-                  textData: 'Order Management',
-                  width: 12,
-                  onTap: () {
-                    Get.to(() => const OrderManagementScreen());
-                  },
-                ),
-                DrawerTile(
-                  // imagePath: 'images/delivery_man.png',
-                  textData: 'Expense',
-                  width: 12,
-                  onTap: () {
-                    Get.to(() => const ExpenseScreen(), binding: InitialBinding());
-                  },
-                ),
-                DrawerTile(
-                  // imagePath: 'images/delivery_man.png',
-                  textData: 'Lottery',
-                  width: 12,
-                  onTap: () {
-                    Get.to(() => const LotteryScreen(), binding: InitialBinding());
-                  },
-                ),
-                DrawerTile(
-                  // imagePath: 'images/delivery_man.png',
-                  textData: 'Income',
-                  width: 12,
-                  onTap: () {
-                    Get.to(() => const IncomeScreen(), binding: InitialBinding());
-                  },
-                ),
+                if (controller.currentUser!.name != controller.userTypes[1])
+                  DrawerTile(
+                    // imagePath: 'images/delivery_man.png',
+                    textData: 'Order Management',
+                    width: 12,
+                    onTap: () {
+                      Get.to(() => const OrderManagementScreen());
+                    },
+                  ),
+                if (controller.currentUser!.name != controller.userTypes[2])
+                  DrawerTile(
+                    // imagePath: 'images/delivery_man.png',
+                    textData: 'Expense',
+                    width: 12,
+                    onTap: () {
+                      Get.to(() => const ExpenseScreen(), binding: InitialBinding());
+                    },
+                  ),
+                if (controller.currentUser!.name == controller.userTypes[0])
+                  DrawerTile(
+                    // imagePath: 'images/delivery_man.png',
+                    textData: 'Lottery',
+                    width: 12,
+                    onTap: () {
+                      Get.to(() => const LotteryScreen(), binding: InitialBinding());
+                    },
+                  ),
+                if (controller.currentUser!.name != controller.userTypes[2])
+                  DrawerTile(
+                    // imagePath: 'images/delivery_man.png',
+                    textData: 'Income',
+                    width: 12,
+                    onTap: () {
+                      Get.to(() => IncomeScreen(), binding: InitialBinding());
+                    },
+                  ),
                 if (controller.currentUser!.name == controller.userTypes[0])
                   DrawerTile(
                     // imagePath: 'images/delivery_man.png',

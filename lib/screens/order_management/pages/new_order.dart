@@ -23,7 +23,7 @@ class NewOrderScreen extends GetView<OrderManagementController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => Get.to(const HomeScreen()),
+                    onTap: () => Get.to(HomeScreen()),
                     child: CircleAvatar(
                       radius: 20,
                       backgroundColor: CustomColor.secondaryColor,

@@ -3,6 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:jkmart/controllers/auth_controller.dart';
 
 import 'package:jkmart/controllers/home_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
@@ -12,7 +13,9 @@ import 'package:jkmart/screens/home/widgets/appdrawer.dart';
 import 'package:jkmart/screens/home/widgets/inventory_home_body.dart';
 
 class HomeScreen extends GetView<HomeController> {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -49,129 +52,134 @@ class HomeScreen extends GetView<HomeController> {
             const SizedBox(
               height: 30,
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: GlobalBottomButton(
-                    text: "Weekly",
-                    onPressed: () {},
-                    isSolidButton: true,
-                    color: CustomColor.secondaryColor,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: GlobalBottomButton(
-                    text: "Monthly",
-                    onPressed: () {},
-                    isSolidButton: true,
-                    color: CustomColor.secondaryColor,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: GlobalBottomButton(
-                    text: "Yealy",
-                    onPressed: () {},
-                    isSolidButton: true,
-                    color: CustomColor.secondaryColor,
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            authController.currentUser!.name != authController.userTypes[2]
+                ? Column(
                     children: [
-                      const Text(
-                        'Last 7 Days',
-                        style: TextStyle(color: CustomColor.secondaryColor, fontSize: 14, fontWeight: FontWeight.w200),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: GlobalBottomButton(
+                              text: "Weekly",
+                              onPressed: () {},
+                              isSolidButton: true,
+                              color: CustomColor.secondaryColor,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: GlobalBottomButton(
+                              text: "Monthly",
+                              onPressed: () {},
+                              isSolidButton: true,
+                              color: CustomColor.secondaryColor,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: GlobalBottomButton(
+                              text: "Yealy",
+                              onPressed: () {},
+                              isSolidButton: true,
+                              color: CustomColor.secondaryColor,
+                            ),
+                          )
+                        ],
                       ),
                       const SizedBox(
-                        height: 2,
+                        height: 20,
                       ),
-                      Row(
-                        children: const [
-                          Text(
-                            '341.02',
-                            style: TextStyle(color: CustomColor.primaryColor, fontSize: 20, fontWeight: FontWeight.w400),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            Icons.circle_outlined,
-                            color: Colors.red,
-                            size: 10,
-                          ),
-                          Text(
-                            "11%",
-                            style: TextStyle(color: Colors.red, fontSize: 14, fontWeight: FontWeight.w200),
-                          ),
-                        ],
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Last 7 Days',
+                                  style: TextStyle(color: CustomColor.secondaryColor, fontSize: 14, fontWeight: FontWeight.w200),
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                Row(
+                                  children: const [
+                                    Text(
+                                      '341.02',
+                                      style: TextStyle(color: CustomColor.primaryColor, fontSize: 20, fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(
+                                      Icons.circle_outlined,
+                                      color: Colors.red,
+                                      size: 10,
+                                    ),
+                                    Text(
+                                      "11%",
+                                      style: TextStyle(color: Colors.red, fontSize: 14, fontWeight: FontWeight.w200),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text("Avg day", style: Get.textTheme.bodyText1!.copyWith(color: CustomColor.secondaryColor, fontSize: 12, fontWeight: FontWeight.w100)),
+                                    const SizedBox(height: 5),
+                                    Text("17", style: Get.textTheme.bodyText1!.copyWith(color: CustomColor.primaryColor, fontSize: 20, fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Text("Avg day", style: Get.textTheme.bodyText1!.copyWith(color: CustomColor.secondaryColor, fontSize: 12, fontWeight: FontWeight.w100)),
-                          const SizedBox(height: 5),
-                          Text("17", style: Get.textTheme.bodyText1!.copyWith(color: CustomColor.primaryColor, fontSize: 20, fontWeight: FontWeight.bold)),
-                        ],
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: AspectRatio(
+                          aspectRatio: 1.5,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: BarChart(
+                              BarChartData(
+                                baselineY: 20,
+                                maxY: 13,
+                                backgroundColor: Colors.white,
+                                borderData: FlBorderData(show: false),
+                                alignment: BarChartAlignment.spaceAround,
+                                barGroups: controller.chartGroups(),
+                                gridData: FlGridData(show: false),
+                                barTouchData: BarTouchData(
+                                  enabled: true,
+                                ),
+                                titlesData: FlTitlesData(
+                                  bottomTitles: AxisTitles(
+                                    sideTitles: controller.bottomTitles,
+                                  ),
+                                  leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   )
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: AspectRatio(
-                aspectRatio: 1.5,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: BarChart(
-                    BarChartData(
-                      baselineY: 20,
-                      maxY: 13,
-                      backgroundColor: Colors.white,
-                      borderData: FlBorderData(show: false),
-                      alignment: BarChartAlignment.spaceAround,
-                      barGroups: controller.chartGroups(),
-                      gridData: FlGridData(show: false),
-                      barTouchData: BarTouchData(
-                        enabled: true,
-                      ),
-                      titlesData: FlTitlesData(
-                        bottomTitles: AxisTitles(
-                          sideTitles: controller.bottomTitles,
-                        ),
-                        leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                        rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const InventoryHomeBody(),
+                : const InventoryHomeBody(),
           ],
         ),
       ),

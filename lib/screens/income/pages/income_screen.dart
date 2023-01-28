@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jkmart/controllers/auth_controller.dart';
 import 'package:jkmart/controllers/income_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/core/widgets/global_bottom_button.dart';
@@ -8,7 +9,9 @@ import 'package:jkmart/screens/home/widgets/appdrawer.dart';
 import 'package:jkmart/screens/income/widgets/add_incomes.dart';
 
 class IncomeScreen extends GetView<IncomeController> {
-  const IncomeScreen({Key? key}) : super(key: key);
+  IncomeScreen({Key? key}) : super(key: key);
+
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class IncomeScreen extends GetView<IncomeController> {
                         'Income',
                         style: Get.textTheme.headline2,
                       ),
-                      const AddIncome(),
+                      authController.currentUser!.name == authController.userTypes[0] ? const AddIncome() : const SizedBox(height: 20, width: 20),
                     ],
                   ),
                   const SizedBox(
