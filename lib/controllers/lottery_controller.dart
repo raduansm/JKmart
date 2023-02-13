@@ -38,11 +38,20 @@ class LotteryController extends GetxController {
 
   Rx<DateTime> queryDate = DateTime.now().obs;
 
+  int totalSold = 0;
+
   @override
   void onInit() {
     super.onInit();
 
     getLotteries();
+  }
+
+  void clearTextFields() {
+    serialController.clear();
+    startController.clear();
+    closeController.clear();
+    totalController.clear();
   }
 
   void updateDate(DateTime date) {
@@ -63,12 +72,8 @@ class LotteryController extends GetxController {
   Future<void> getLotteries() async {
     isLoading.value = true;
 
-    final result = await repository.getLotteries(
-        queryDate: DateUtils.dateOnly(queryDate.value)
-                    .compareTo(DateUtils.dateOnly(DateTime.now())) ==
-                0
-            ? null
-            : DateUtils.dateOnly(queryDate.value));
+    // final result = await repository.getLotteries(queryDate: DateUtils.dateOnly(queryDate.value).compareTo(DateUtils.dateOnly(DateTime.now())) == 0 ? null : DateUtils.dateOnly(queryDate.value));
+    final result = await repository.getLotteries(queryDate: DateUtils.dateOnly(queryDate.value));
 
     result.fold((l) {
       if (l is NoConnectionFailure) {
@@ -78,6 +83,11 @@ class LotteryController extends GetxController {
       }
     }, (r) {
       lotteries = r;
+      totalSold = 0;
+      for (var element in lotteries) {
+        final elementsTotal = int.tryParse(element.total!);
+        totalSold = totalSold + (elementsTotal ?? 0);
+      }
     });
 
     await getGames();
@@ -89,8 +99,7 @@ class LotteryController extends GetxController {
     result.fold(
       (l) {
         if (l is NoConnectionFailure) {
-          Get.snackbar(
-              "No connection", "Please check your internet connection");
+          Get.snackbar("No connection", "Please check your internet connection");
         } else {
           Get.snackbar("Something went wrong", "Please try again later");
         }
@@ -142,6 +151,7 @@ class LotteryController extends GetxController {
       getLotteries();
       Get.back();
       Get.snackbar("Lottery added", 'New lottery added successfully');
+      clearTextFields();
     });
 
     isAddingLottery.value = false;

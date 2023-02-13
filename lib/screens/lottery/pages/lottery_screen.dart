@@ -111,19 +111,19 @@ class LotteryScreen extends GetView<LotteryController> {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            if (index == 0 || controller.lotteries[index].date != controller.lotteries[index - 1].date)
-                              Container(
-                                height: 40,
-                                width: double.infinity,
-                                alignment: Alignment.center,
-                                color: CustomColor.secondaryColor.withOpacity(0.3),
-                                margin: const EdgeInsets.symmetric(vertical: 8),
-                                child: Text(
-                                  DateFormat("dd MMMM yyyy").format(DateTime.parse(controller.lotteries[index].date!)),
-                                  textAlign: TextAlign.center,
-                                  style: Get.textTheme.subtitle2,
-                                ),
-                              ),
+                            // if (index == 0 || controller.lotteries[index].date != controller.lotteries[index - 1].date)
+                            //   Container(
+                            //     height: 40,
+                            //     width: double.infinity,
+                            //     alignment: Alignment.center,
+                            //     color: CustomColor.secondaryColor.withOpacity(0.3),
+                            //     margin: const EdgeInsets.symmetric(vertical: 8),
+                            //     child: Text(
+                            //       DateFormat("dd MMMM yyyy").format(DateTime.parse(controller.lotteries[index].date!)),
+                            //       textAlign: TextAlign.center,
+                            //       style: Get.textTheme.subtitle2,
+                            //     ),
+                            //   ),
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
                               height: 25,
@@ -166,6 +166,23 @@ class LotteryScreen extends GetView<LotteryController> {
                                 ],
                               ),
                             ),
+                            if (index == controller.lotteries.length - 1)
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                color: CustomColor.secondaryColor,
+                                child: Row(children: [
+                                  Text(
+                                    "Total:",
+                                    style: Get.textTheme.headline5,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    controller.totalSold.toString(),
+                                    style: Get.textTheme.headline5,
+                                  )
+                                ]),
+                              )
                           ],
                         );
                       },
