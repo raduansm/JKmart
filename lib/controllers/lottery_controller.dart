@@ -16,6 +16,7 @@ class LotteryController extends GetxController {
   ///List of all lotteries from server
   List<LotteryModel> lotteries = [];
   List<GamesModel> games = [];
+  List<int> lotteryPrices = [];
 
   ///This veriable shows if api is getting data
   RxBool isLoading = false.obs;
@@ -39,6 +40,7 @@ class LotteryController extends GetxController {
   Rx<DateTime> queryDate = DateTime.now().obs;
 
   int totalSold = 0;
+  int totalSoldPrice = 0;
 
   @override
   void onInit() {
@@ -106,6 +108,16 @@ class LotteryController extends GetxController {
       },
       (r) {
         games = r;
+        lotteryPrices.clear();
+        totalSoldPrice = 0;
+        for (final LotteryModel lottery in lotteries) {
+          for (final GamesModel game in games) {
+            if (lottery.gameId == game.gameId) {
+              lotteryPrices.add(game.costOfTicket ?? 0);
+              totalSoldPrice += (game.costOfTicket ?? 0) * (int.parse(lottery.total ?? "0"));
+            }
+          }
+        }
       },
     );
 

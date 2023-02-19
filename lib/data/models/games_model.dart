@@ -19,6 +19,7 @@ class GamesModel {
     this.createdAt,
     this.updatedAt,
     this.collection,
+    this.costOfTicket,
   });
 
   int? gameId;
@@ -30,6 +31,7 @@ class GamesModel {
   int? createdAt;
   int? updatedAt;
   String? collection;
+  int? costOfTicket;
 
   factory GamesModel.fromJson(Map<String, dynamic> json) => GamesModel(
         gameId: json["gameId"],
@@ -41,6 +43,7 @@ class GamesModel {
         createdAt: json["\u0024createdAt"],
         updatedAt: json["\u0024updatedAt"],
         collection: json["\u0024collection"],
+        costOfTicket: json["costofticket"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -53,5 +56,6 @@ class GamesModel {
         "\u0024createdAt": createdAt,
         "\u0024updatedAt": updatedAt,
         "\u0024collection": collection,
+        "costofticket": costOfTicket,
       };
 }

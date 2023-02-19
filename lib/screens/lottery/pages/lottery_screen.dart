@@ -34,10 +34,17 @@ class LotteryScreen extends GetView<LotteryController> {
                       children: [
                         GestureDetector(
                           onTap: () => Get.back(),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             radius: 20,
                             backgroundColor: CustomColor.secondaryColor,
-                            child: Image.asset('assets/images/menu.png', scale: 5),
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 2),
+                              child: Icon(
+                                Icons.arrow_back_ios_new_rounded,
+                                size: 20,
+                                color: Colors.white60,
+                              ),
+                            ),
                           ),
                         ),
                         const Text(
@@ -76,121 +83,228 @@ class LotteryScreen extends GetView<LotteryController> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Serial ",
-                          style: Get.textTheme.headline5,
-                        ),
-                        Text(
-                          "Start ",
-                          style: Get.textTheme.headline5,
-                        ),
-                        Text(
-                          "Close ",
-                          style: Get.textTheme.headline5,
-                        ),
-                        Text(
-                          "Total",
-                          style: Get.textTheme.headline5,
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        "Available Data",
+                        style: Get.textTheme.headline4,
+                      ),
                     ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Text(
+                    //       "Serial ",
+                    //       style: Get.textTheme.headline5,
+                    //     ),
+                    //     Text(
+                    //       "Start ",
+                    //       style: Get.textTheme.headline5,
+                    //     ),
+                    //     Text(
+                    //       "Close ",
+                    //       style: Get.textTheme.headline5,
+                    //     ),
+                    //     Text(
+                    //       "Total",
+                    //       style: Get.textTheme.headline5,
+                    //     ),
+                    //   ],
+                    // ),
                     const SizedBox(
                       height: 5,
                     ),
-                    const Divider(
-                      color: Colors.white,
-                      thickness: 1,
-                    ),
+                    // const Divider(
+                    //   color: Colors.white,
+                    //   thickness: 1,
+                    // ),
                     ListView.separated(
                       shrinkWrap: true,
                       reverse: false,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            // if (index == 0 || controller.lotteries[index].date != controller.lotteries[index - 1].date)
-                            //   Container(
-                            //     height: 40,
-                            //     width: double.infinity,
-                            //     alignment: Alignment.center,
-                            //     color: CustomColor.secondaryColor.withOpacity(0.3),
-                            //     margin: const EdgeInsets.symmetric(vertical: 8),
-                            //     child: Text(
-                            //       DateFormat("dd MMMM yyyy").format(DateTime.parse(controller.lotteries[index].date!)),
-                            //       textAlign: TextAlign.center,
-                            //       style: Get.textTheme.subtitle2,
-                            //     ),
-                            //   ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              height: 25,
-                              color: CustomColor.secondaryColor,
-                              child: Row(
+                        return Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: CustomColor.secondaryColor,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SizedBox(
-                                    width: 20,
-                                    child: Text(
-                                      controller.lotteries[index].serial!,
-                                      style: Get.textTheme.subtitle1,
-                                      textAlign: TextAlign.center,
-                                    ),
+                                  Text(
+                                    "Serial: ${controller.lotteries[index].serial}",
+                                    style: Get.textTheme.headline5,
                                   ),
-                                  SizedBox(
-                                    width: 20,
-                                    child: Text(
-                                      controller.lotteries[index].start!,
-                                      style: Get.textTheme.subtitle1,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                    child: Text(
-                                      controller.lotteries[index].close!,
-                                      style: Get.textTheme.subtitle1,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                    child: Text(
-                                      controller.lotteries[index].total!,
-                                      style: Get.textTheme.subtitle1,
-                                      textAlign: TextAlign.center,
-                                    ),
+                                  Text(
+                                    "\$${controller.lotteryPrices[index]}",
+                                    style: Get.textTheme.headline5,
                                   ),
                                 ],
                               ),
-                            ),
-                            if (index == controller.lotteries.length - 1)
-                              Container(
-                                margin: const EdgeInsets.only(top: 10),
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                                color: CustomColor.secondaryColor,
-                                child: Row(children: [
-                                  Text(
-                                    "Total:",
-                                    style: Get.textTheme.headline5,
+                              const SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Start at : ${controller.lotteries[index].start}",
+                                        style: Get.textTheme.headline6,
+                                      ),
+                                      Text(
+                                        "Close at : ${controller.lotteries[index].close}",
+                                        style: Get.textTheme.headline6,
+                                      ),
+                                    ],
                                   ),
-                                  const Spacer(),
-                                  Text(
-                                    controller.totalSold.toString(),
-                                    style: Get.textTheme.headline5,
-                                  )
-                                ]),
-                              )
-                          ],
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Sold : ${controller.lotteries[index].total}",
+                                        style: Get.textTheme.headline6,
+                                      ),
+                                      Text(
+                                        "Income : \$${int.parse(controller.lotteries[index].total ?? "0") * controller.lotteryPrices[index]}",
+                                        style: Get.textTheme.headline6,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         );
+                        // return Column(
+                        //   children: [
+                        //     // if (index == 0 || controller.lotteries[index].date != controller.lotteries[index - 1].date)
+                        //     //   Container(
+                        //     //     height: 40,
+                        //     //     width: double.infinity,
+                        //     //     alignment: Alignment.center,
+                        //     //     color: CustomColor.secondaryColor.withOpacity(0.3),
+                        //     //     margin: const EdgeInsets.symmetric(vertical: 8),
+                        //     //     child: Text(
+                        //     //       DateFormat("dd MMMM yyyy").format(DateTime.parse(controller.lotteries[index].date!)),
+                        //     //       textAlign: TextAlign.center,
+                        //     //       style: Get.textTheme.subtitle2,
+                        //     //     ),
+                        //     //   ),
+                        //     Container(
+                        //       padding: const EdgeInsets.symmetric(horizontal: 10),
+                        //       height: 25,
+                        //       color: CustomColor.secondaryColor,
+                        //       child: Row(
+                        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //         children: [
+                        //           SizedBox(
+                        //             width: 20,
+                        //             child: Text(
+                        //               controller.lotteries[index].serial!,
+                        //               style: Get.textTheme.subtitle1,
+                        //               textAlign: TextAlign.center,
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             width: 20,
+                        //             child: Text(
+                        //               controller.lotteries[index].start!,
+                        //               style: Get.textTheme.subtitle1,
+                        //               textAlign: TextAlign.center,
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             width: 20,
+                        //             child: Text(
+                        //               controller.lotteries[index].close!,
+                        //               style: Get.textTheme.subtitle1,
+                        //               textAlign: TextAlign.center,
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             width: 20,
+                        //             child: Text(
+                        //               controller.lotteries[index].total!,
+                        //               style: Get.textTheme.subtitle1,
+                        //               textAlign: TextAlign.center,
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //     if (index == controller.lotteries.length - 1)
+                        //       Container(
+                        //         margin: const EdgeInsets.only(top: 10),
+                        //         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        //         color: CustomColor.secondaryColor,
+                        //         child: Row(children: [
+                        //           Text(
+                        //             "Total:",
+                        //             style: Get.textTheme.headline5,
+                        //           ),
+                        //           const Spacer(),
+                        //           Text(
+                        //             controller.totalSold.toString(),
+                        //             style: Get.textTheme.headline5,
+                        //           )
+                        //         ]),
+                        //       )
+                        //   ],
+                        // );
                       },
                       separatorBuilder: (context, index) {
-                        return const SizedBox(height: 5);
+                        return const SizedBox(height: 8);
                       },
                       itemCount: controller.lotteries.length,
                     ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: CustomColor.secondaryColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            "Total",
+                            style: Get.textTheme.headline4,
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Ticket sold",
+                                style: Get.textTheme.headline5,
+                              ),
+                              Text(
+                                controller.totalSold.toString(),
+                                style: Get.textTheme.headline5,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 5),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Ticket income",
+                                style: Get.textTheme.headline5,
+                              ),
+                              Text(
+                                "\$" + controller.totalSoldPrice.toString(),
+                                style: Get.textTheme.headline5,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
         ),
