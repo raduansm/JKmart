@@ -42,4 +42,28 @@ class LotteryDataSource {
 
     return games;
   }
+
+  Future<void> updateLottery({required String id, required String serial, required String start, required String close, required String total, required int gameId, required DateTime date}) async {
+    // final response = await db.listDocuments(
+    //   collectionId: _collectionId,
+    //   orderTypes: ["ASC"],
+    //   orderAttributes: ["date"],
+    //   queries: [
+    //     Query.greaterEqual("date", DateUtils.dateOnly(date).toIso8601String()),
+    //     Query.equal("gameId", gameId),
+    //   ],
+    // );
+
+    // final lotteries = List<LotteryModel>.from(response.documents.map((e) => LotteryModel.fromJson(e.data)));
+
+    // final int tempClose = int.parse(close);
+
+    final LotteryModel payload = LotteryModel(serial: serial, start: start, close: close, total: total, gameId: gameId, date: DateUtils.dateOnly(date).toIso8601String(), read: [], write: [], createdAt: date.toUtc().millisecondsSinceEpoch);
+
+    final response = await db.updateDocument(
+      collectionId: _collectionId,
+      documentId: id,
+      data: payload.toJson(),
+    );
+  }
 }

@@ -12,6 +12,8 @@ class GlobalTextField extends StatelessWidget {
     this.keyboardType,
     this.textAlign = TextAlign.start,
     this.validator,
+    this.readOnly = false,
+    this.onChanged,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -21,6 +23,8 @@ class GlobalTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextAlign textAlign;
   final String? Function(String?)? validator;
+  final bool readOnly;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,8 @@ class GlobalTextField extends StatelessWidget {
       child: TextFormField(
         style: Get.textTheme.headline4,
         textAlign: textAlign,
+        readOnly: readOnly,
+        onChanged: onChanged,
         decoration: InputDecoration(
           errorMaxLines: 2,
           contentPadding: const EdgeInsets.all(10),

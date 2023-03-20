@@ -1,12 +1,24 @@
+import 'dart:io';
+
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:jkmart/core/error/failures.dart';
 import 'package:jkmart/data/models/games_model.dart';
 import 'package:jkmart/data/repositories/lottery_repository.dart';
 
 import 'package:jkmart/data/models/lottery_model.dart';
+import 'package:path_provider/path_provider.dart';
+
+import 'package:path/path.dart';
+import 'dart:io' as io;
+
+import 'package:permission_handler/permission_handler.dart';
 
 class LotteryController extends GetxController {
   final LotteryRepository repository;
@@ -23,6 +35,8 @@ class LotteryController extends GetxController {
 
   ///This veriable shows if api is creating a new lottery data
   RxBool isAddingLottery = false.obs;
+  RxBool isUpdatingLottery = false.obs;
+  RxBool isExportingData = false.obs;
 
   //text fields for adding lottery
   TextEditingController serialController = TextEditingController();
@@ -167,5 +181,109 @@ class LotteryController extends GetxController {
     });
 
     isAddingLottery.value = false;
+  }
+
+  Future<void> updateLottery({required String id, required String serial, required String start, required String close, required String total, required int gameId, required DateTime date}) async {
+    isUpdatingLottery.value = true;
+
+    final result = await repository.updateLottery(
+      id: id,
+      serial: serial,
+      start: start,
+      close: close,
+      total: total,
+      gameId: gameId,
+      date: DateUtils.dateOnly(date),
+    );
+
+    result.fold((l) {
+      Get.back();
+      if (l is NoConnectionFailure) {
+        Get.snackbar("No connection", "Please check your internet connection");
+      } else {
+        Get.snackbar("Something went wrong", "Please try again later");
+      }
+    }, (r) {
+      getLotteries();
+      Get.back();
+      Get.snackbar("Lottery updated", 'Lottery updated successfully');
+    });
+
+    isUpdatingLottery.value = false;
+  }
+
+  static Future<Directory?> getDownloadDirectory() async {
+    if (Platform.isIOS) return getApplicationDocumentsDirectory();
+
+    final androidInfo = await DeviceInfoPlugin().androidInfo;
+
+    bool isAndroidX = int.parse(androidInfo.version.release as String) > 10;
+
+    if (!isAndroidX && !await Permission.storage.isGranted) {
+      await Permission.storage.request();
+    }
+
+    if (!isAndroidX && (await Permission.storage.isDenied || await Permission.storage.isPermanentlyDenied)) {
+      Fluttertoast.showToast(msg: "Storage permission is not given");
+      return null;
+    }
+
+    String localPath = '/storage/emulated/0/Download';
+    final savedDir = Directory(localPath);
+    bool hasExisted = await savedDir.exists();
+    if (!hasExisted) {
+      savedDir.create();
+    }
+
+    return savedDir;
+  }
+
+  Future<void> exportToExcel() async {
+    isExportingData.value = true;
+
+    final excel = Excel.createExcel();
+    final sheet = excel.sheets[excel.getDefaultSheet() as String];
+
+    sheet!.cell(CellIndex.indexByColumnRow(columnIndex: 0, rowIndex: 0)).value = "Price";
+
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 1, rowIndex: 0)).value = "Open";
+
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: 0)).value = "Close";
+
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: 0)).value = "Sold";
+
+    for (int j = 0; j < lotteries.length; j++) {
+      for (int i = 0; i < 4; i++) {
+        String value = "";
+        if (i == 0) {
+          value = "\$${lotteryPrices[j]}";
+        } else if (i == 1) {
+          value = lotteries[j].start ?? "";
+        } else if (i == 2) {
+          value = lotteries[j].close ?? "";
+        } else if (i == 3) {
+          value = lotteries[j].total ?? "";
+        }
+
+        sheet.cell(CellIndex.indexByColumnRow(columnIndex: i, rowIndex: j + 1)).value = value;
+      }
+    }
+
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: lotteries.length + 3)).value = "Total Sold";
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: lotteries.length + 3)).value = totalSold.toString();
+
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: lotteries.length + 4)).value = "Total Income";
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: lotteries.length + 4)).value = "\$$totalSoldPrice";
+
+    var fileBytes = excel.save();
+    var directory = await getDownloadDirectory();
+
+    io.File(join("${directory!.path}/lottery_report_${DateFormat("dd-MMM-yy").format(queryDate.value)}.xlsx"))
+      ..createSync(recursive: true)
+      ..writeAsBytesSync(fileBytes!);
+
+    Fluttertoast.showToast(msg: "File saved");
+
+    isExportingData.value = false;
   }
 }

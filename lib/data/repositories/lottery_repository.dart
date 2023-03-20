@@ -42,6 +42,21 @@ class LotteryRepository {
     }
   }
 
+  Future<Either<Failure, void>> updateLottery({required String id, required String serial, required String start, required String close, required String total, required int gameId, required DateTime date}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        await dataSource.updateLottery(id: id, serial: serial, start: start, close: close, total: total, gameId: gameId, date: date);
+
+        return const Right(null);
+      } on AppwriteException catch (e) {
+        print(e.message);
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NoConnectionFailure());
+    }
+  }
+
   Future<Either<Failure, List<GamesModel>>> getGames() async {
     if (await networkInfo.isConnected) {
       try {

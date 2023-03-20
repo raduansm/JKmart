@@ -17,6 +17,7 @@ class GlobalCupertinoDatePicker extends StatelessWidget {
     this.boxRarius,
     required this.onDateChanged,
     this.onComplete,
+    this.readOnly = false,
   }) : super(key: key);
 
   final String? label;
@@ -29,25 +30,28 @@ class GlobalCupertinoDatePicker extends StatelessWidget {
   final double? boxRarius;
   final ValueChanged<DateTime> onDateChanged;
   final Function(dynamic)? onComplete;
+  final bool readOnly;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        showCupertinoModalPopup(
-            context: context,
-            builder: (context) {
-              return SizedBox(
-                height: modalHeight ?? 250,
-                child: CupertinoDatePicker(
-                  onDateTimeChanged: onDateChanged,
-                  backgroundColor: modalBackgroundColor ?? Colors.white,
-                  initialDateTime: initialDateTime ?? DateTime.now(),
-                  mode: CupertinoDatePickerMode.date,
-                ),
-              );
-            }).then(onComplete ?? (value) {});
-      },
+      onTap: readOnly
+          ? null
+          : () {
+              showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) {
+                    return SizedBox(
+                      height: modalHeight ?? 250,
+                      child: CupertinoDatePicker(
+                        onDateTimeChanged: onDateChanged,
+                        backgroundColor: modalBackgroundColor ?? Colors.white,
+                        initialDateTime: initialDateTime ?? DateTime.now(),
+                        mode: CupertinoDatePickerMode.date,
+                      ),
+                    );
+                  }).then(onComplete ?? (value) {});
+            },
       child: Container(
         height: boxHeight ?? 45,
         decoration: BoxDecoration(
