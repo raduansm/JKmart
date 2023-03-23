@@ -33,14 +33,21 @@ class IncomeScreen extends GetView<IncomeController> {
                     children: [
                       GestureDetector(
                         onTap: () => Get.back(),
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           radius: 20,
                           backgroundColor: CustomColor.secondaryColor,
-                          child: Image.asset('assets/images/menu.png', scale: 5),
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 2),
+                            child: Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              size: 20,
+                              color: Colors.white60,
+                            ),
+                          ),
                         ),
                       ),
                       Text(
-                        'Income',
+                        'Incomes',
                         style: Get.textTheme.headline2,
                       ),
                       authController.currentUser!.name == authController.userTypes[0] ? const AddIncome() : const SizedBox(height: 20, width: 20),
@@ -49,42 +56,6 @@ class IncomeScreen extends GetView<IncomeController> {
                   const SizedBox(
                     height: 40,
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(left: 20.0, right: 15.0, top: 10.0, bottom: 10.0),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(
-                  //         'Name',
-                  //         style: Get.textTheme.headline5,
-                  //       ),
-                  //       Padding(
-                  //         padding: const EdgeInsets.only(left: 15.0),
-                  //         child: Text(
-                  //           'Amount',
-                  //           style: Get.textTheme.headline5,
-                  //         ),
-                  //       ),
-                  //       Padding(
-                  //         padding: const EdgeInsets.only(right: 15.0),
-                  //         child: Text(
-                  //           'Date',
-                  //           style: Get.textTheme.headline5,
-                  //         ),
-                  //       ),
-                  //       Padding(
-                  //         padding: const EdgeInsets.only(right: 10.0),
-                  //         child: Text(
-                  //           'Type',
-                  //           style: Get.textTheme.headline5,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // const SizedBox(
-                  //   height: 10,
-                  // ),
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -102,7 +73,7 @@ class IncomeScreen extends GetView<IncomeController> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  controller.incomes[index].vendor ?? "No name entered",
+                                  controller.generatedVendors[index].name ?? "No name entered",
                                   style: Get.textTheme.headline5,
                                 ),
                               ),
@@ -113,7 +84,7 @@ class IncomeScreen extends GetView<IncomeController> {
                                   color: CustomColor.primaryColor,
                                 ),
                                 child: Text(
-                                  controller.incomes[index].type ?? "Undefined",
+                                  controller.generatedPaymentTypes[index].name ?? "Undefined",
                                   style: Get.textTheme.subtitle2,
                                 ),
                               )
@@ -147,45 +118,6 @@ class IncomeScreen extends GetView<IncomeController> {
                           )
                         ]),
                       );
-                      // return Container(
-                      //   decoration: BoxDecoration(
-                      //     color: CustomColor.secondaryColor,
-                      //     borderRadius: BorderRadius.circular(8),
-                      //   ),
-                      //   padding: const EdgeInsets.symmetric(vertical: 10),
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.only(left: 20.0, right: 15.0),
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //       children: [
-                      //         Expanded(
-                      //           child: Text(
-                      //             controller.incomes[index].vendor!,
-                      //             style: Get.textTheme.subtitle1,
-                      //           ),
-                      //         ),
-                      //         Expanded(
-                      //           child: Padding(
-                      //             padding: const EdgeInsets.only(left: 15.0),
-                      //             child: Text(controller.incomes[index].amount!, style: Get.textTheme.subtitle1),
-                      //           ),
-                      //         ),
-                      //         Expanded(
-                      //           child: Padding(
-                      //             padding: const EdgeInsets.only(left: 30.0),
-                      //             child: Text(controller.incomes[index].date!, style: Get.textTheme.subtitle1),
-                      //           ),
-                      //         ),
-                      //         Expanded(
-                      //           child: Padding(
-                      //             padding: const EdgeInsets.only(left: 35.0),
-                      //             child: Text(controller.incomes[index].type!, style: Get.textTheme.subtitle1),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // );
                     },
                     separatorBuilder: (context, index) {
                       return const SizedBox(height: 12);

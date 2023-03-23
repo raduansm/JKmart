@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:jkmart/core/error/failures.dart';
 import 'package:jkmart/data/models/games_model.dart';
+import 'package:jkmart/data/models/vendor_model.dart';
 import 'package:jkmart/data/repositories/lottery_repository.dart';
 
 import 'package:jkmart/data/models/lottery_model.dart';

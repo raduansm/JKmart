@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jkmart/core/error/failures.dart';
+import 'package:jkmart/data/models/payment_type_model.dart';
+import 'package:jkmart/data/models/vendor_model.dart';
 import 'package:jkmart/data/repositories/income_repository.dart';
 import 'package:jkmart/data/repositories/lottery_repository.dart';
 import 'package:jkmart/data/models/income_model.dart';
@@ -10,7 +12,15 @@ class IncomeController extends GetxController {
 
   IncomeController({required this.repository});
 
+  //List of all lotteries from server
   List<IncomeModel> incomes = [];
+  List<VendorModel> vendors = [];
+  List<PaymentTypeModel> paymentTypes = [];
+
+  //These variables are generated list for showing in UI
+  List<VendorModel> generatedVendors = [];
+  List<PaymentTypeModel> generatedPaymentTypes = [];
+
   RxBool isLoading = false.obs;
   RxBool isAddingIncome = false.obs;
 
@@ -41,8 +51,35 @@ class IncomeController extends GetxController {
     }
   }
 
+  Future<void> getVendors() async {
+    final result = await repository.getVendors();
+
+    result.fold((l) {
+      if (l is NoConnectionFailure) {
+        Get.snackbar("No connection", "Please check your internet connection");
+      }
+    }, (r) {
+      vendors = r;
+    });
+  }
+
+  Future<void> getPaymentTypes() async {
+    final result = await repository.getPaymentTypes();
+
+    result.fold((l) {
+      if (l is NoConnectionFailure) {
+        Get.snackbar("No connection", "Please check your internet connection");
+      }
+    }, (r) {
+      paymentTypes = r;
+    });
+  }
+
   Future<void> getIncomes() async {
     isLoading.value = true;
+
+    await getVendors();
+    await getPaymentTypes();
 
     final result = await repository.getIncomes();
 
@@ -52,6 +89,25 @@ class IncomeController extends GetxController {
       }
     }, (r) {
       incomes = r;
+
+      //generate two lists per id in income with relation
+      for (final income in incomes) {
+        //generate the vendor list compared to income
+        for (final vendor in vendors) {
+          if (income.vendor == vendor.id) {
+            generatedVendors.add(vendor);
+            break;
+          }
+        }
+
+        //generate the paymentType list compared to income
+        for (final paymentType in paymentTypes) {
+          if (income.type == paymentType.id) {
+            generatedPaymentTypes.add(paymentType);
+            break;
+          }
+        }
+      }
     });
 
     isLoading.value = false;
@@ -60,10 +116,7 @@ class IncomeController extends GetxController {
   Future<void> addIncome() async {
     isAddingIncome.value = true;
 
-    final result = await repository.addIncome(
-        vendor: vendorController.text,
-        date: dateController.text,
-        amount: amountController.text);
+    final result = await repository.addIncome(vendor: vendorController.text, date: dateController.text, amount: amountController.text);
 
     result.fold((l) {
       Get.back();
