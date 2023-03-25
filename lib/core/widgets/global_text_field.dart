@@ -14,6 +14,8 @@ class GlobalTextField extends StatelessWidget {
     this.validator,
     this.readOnly = false,
     this.onChanged,
+    this.maxLines,
+    this.hintText,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -25,6 +27,8 @@ class GlobalTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool readOnly;
   final void Function(String)? onChanged;
+  final int? maxLines;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +39,11 @@ class GlobalTextField extends StatelessWidget {
         textAlign: textAlign,
         readOnly: readOnly,
         onChanged: onChanged,
+        maxLines: obscureText ? 1 : maxLines,
         decoration: InputDecoration(
           errorMaxLines: 2,
           contentPadding: const EdgeInsets.all(10),
+          hintText: hintText,
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(10.0),

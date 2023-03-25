@@ -15,8 +15,17 @@ class IncomeDataSource {
   final _paymentTypeCollectionId = '6414bcf32c864410e323';
   final _uniqueId = 'unique()';
 
-  Future<List<IncomeModel>> getIncomes() async {
-    final response = await db.listDocuments(collectionId: _collectionId);
+  Future<List<IncomeModel>> getIncomes({String? vendorQuery, String? dateQuery, String? paymentTypeQuery}) async {
+    final response = await db.listDocuments(
+      collectionId: _collectionId,
+      orderTypes: ["DESC"],
+      orderAttributes: ["date"],
+      queries: [
+        vendorQuery != null ? Query.equal("vendor", vendorQuery) : Query.notEqual("vendor", ""),
+        dateQuery != null ? Query.equal("date", dateQuery) : Query.notEqual("date", ""),
+        paymentTypeQuery != null ? Query.equal("type", paymentTypeQuery) : Query.notEqual("type", ""),
+      ],
+    );
 
     final incomes = List<IncomeModel>.from(response.documents.map((e) => IncomeModel.fromJson(e.data)));
 
@@ -39,13 +48,15 @@ class IncomeDataSource {
     return paymentTypes;
   }
 
-  Future<void> addIncome({required String vendor, required String amount, required String date}) async {
+  Future<void> addIncome({required String vendor, required String amount, required String date, required String type, required String paymentDetails}) async {
     final IncomeModel payload = IncomeModel(
       vendor: vendor,
       amount: amount,
       date: date,
+      type: type,
+      paymentDetails: paymentDetails,
     );
 
-    final response = await db.createDocument(collectionId: _collectionId, documentId: _uniqueId, data: payload.toJson());
+    await db.createDocument(collectionId: _collectionId, documentId: _uniqueId, data: payload.toJson());
   }
 }

@@ -13,10 +13,10 @@ class IncomeRepository {
 
   IncomeRepository({required this.dataSource, required this.networkInfo});
 
-  Future<Either<Failure, List<IncomeModel>>> getIncomes() async {
+  Future<Either<Failure, List<IncomeModel>>> getIncomes({String? vendorQuery, String? dateQuery, String? paymentTypeQuery}) async {
     if (await networkInfo.isConnected) {
       try {
-        final incomes = await dataSource.getIncomes();
+        final incomes = await dataSource.getIncomes(vendorQuery: vendorQuery, dateQuery: dateQuery, paymentTypeQuery: paymentTypeQuery);
         return Right(incomes);
       } on AppwriteException catch (e) {
         print(e.message);
@@ -55,10 +55,10 @@ class IncomeRepository {
     }
   }
 
-  Future<Either<Failure, void>> addIncome({required String vendor, required String date, required String amount}) async {
+  Future<Either<Failure, void>> addIncome({required String vendor, required String date, required String amount, required String type, required String paymentDetails}) async {
     if (await networkInfo.isConnected) {
       try {
-        await dataSource.addIncome(vendor: vendor, date: date, amount: amount);
+        await dataSource.addIncome(vendor: vendor, date: date, amount: amount, paymentDetails: paymentDetails, type: type);
 
         return const Right(null);
       } on AppwriteException catch (e) {

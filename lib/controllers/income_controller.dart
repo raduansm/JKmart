@@ -23,17 +23,45 @@ class IncomeController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isAddingIncome = false.obs;
+  RxBool isShowSearchButtons = false.obs;
 
-  TextEditingController vendorController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
+  ///add income amount text controller
   TextEditingController amountController = TextEditingController();
+
+  ///add income payment Details text controller
+  TextEditingController paymentDetailsController = TextEditingController();
+
+  ///add income selectedDate controller
   Rx<DateTime> selectedDate = DateTime.now().obs;
+
+  ///This variable represents the selected Vendor of income adding scree
+  RxInt selectedVendorIndex = 0.obs;
+
+  ///This variable represents the selected PaymentType of income adding scree
+  RxInt selectedPaymentType = 0.obs;
+
+  ///Form key to validate all the fields of add lottery
+  final formKey = GlobalKey<FormState>();
+
+  //====== income filter properties Start======
+  RxnInt vendorFilterValue = RxnInt();
+  RxnInt paymentTypeFilterValue = RxnInt();
+  TextEditingController amountFilterController = TextEditingController();
+  Rxn<DateTime> filterDate = Rxn<DateTime>();
+  //====== income filter properties End======
 
   @override
   void onInit() {
     super.onInit();
 
     getIncomes();
+  }
+
+  void resetAddIncomeFields() {
+    selectedVendorIndex.value = 0;
+    selectedPaymentType.value = 0;
+    amountController.clear();
+    selectedDate.value = DateTime.now();
   }
 
   void updateDate(DateTime date) {
@@ -78,10 +106,16 @@ class IncomeController extends GetxController {
   Future<void> getIncomes() async {
     isLoading.value = true;
 
-    await getVendors();
-    await getPaymentTypes();
+    if (vendorFilterValue.value == null && filterDate.value == null && paymentTypeFilterValue.value == null) {
+      await getVendors();
+      await getPaymentTypes();
+    }
 
-    final result = await repository.getIncomes();
+    final result = await repository.getIncomes(
+      vendorQuery: vendorFilterValue.value != null ? vendors[vendorFilterValue.value!].id : null,
+      dateQuery: filterDate.value != null ? DateUtils.dateOnly(filterDate.value!).toIso8601String() : null,
+      paymentTypeQuery: paymentTypeFilterValue.value != null ? paymentTypes[paymentTypeFilterValue.value!].id : null,
+    );
 
     result.fold((l) {
       if (l is NoConnectionFailure) {
@@ -89,6 +123,8 @@ class IncomeController extends GetxController {
       }
     }, (r) {
       incomes = r;
+      generatedVendors.clear();
+      generatedPaymentTypes.clear();
 
       //generate two lists per id in income with relation
       for (final income in incomes) {
@@ -114,9 +150,11 @@ class IncomeController extends GetxController {
   }
 
   Future<void> addIncome() async {
+    if (!formKey.currentState!.validate()) return;
+
     isAddingIncome.value = true;
 
-    final result = await repository.addIncome(vendor: vendorController.text, date: dateController.text, amount: amountController.text);
+    final result = await repository.addIncome(vendor: vendors[selectedVendorIndex.value].id!, date: DateUtils.dateOnly(selectedDate.value).toIso8601String(), amount: amountController.text, paymentDetails: paymentDetailsController.text, type: paymentTypes[selectedPaymentType.value].id!);
 
     result.fold((l) {
       Get.back();
@@ -127,6 +165,7 @@ class IncomeController extends GetxController {
       }
     }, (r) {
       getIncomes();
+      resetAddIncomeFields();
       Get.back();
       Get.snackbar("Income added", 'New income added successfully');
     });

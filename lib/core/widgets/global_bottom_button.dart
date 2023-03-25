@@ -60,7 +60,7 @@ class GlobalBottomButton extends StatelessWidget {
                 ? style
                 : isSolidButton
                     ? Get.textTheme.button
-                    : Get.textTheme.button?.copyWith(color: Colors.black),
+                    : Get.textTheme.button?.copyWith(color: CustomColor.pink),
           ),
           if (icon != null && !isFirstIcon) SizedBox(width: space) else Container(),
           if (icon != null && !isFirstIcon) icon! else Container(),

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-IncomeModel? incomeModelFromJson(String str) =>
-    IncomeModel.fromJson(json.decode(str));
+IncomeModel? incomeModelFromJson(String str) => IncomeModel.fromJson(json.decode(str));
 
 String incomeModelToJson(IncomeModel? data) => json.encode(data!.toJson());
 
@@ -11,6 +10,7 @@ class IncomeModel {
     this.date,
     this.amount,
     this.type,
+    this.paymentDetails,
     this.read,
     this.write,
     this.id,
@@ -23,6 +23,7 @@ class IncomeModel {
   String? date;
   String? amount;
   String? type;
+  String? paymentDetails;
   List<String?>? read;
   List<String?>? write;
   String? id;
@@ -35,12 +36,9 @@ class IncomeModel {
         date: json["date"],
         amount: json["amount"],
         type: json["type"],
-        read: json["\u0024read"] == null
-            ? []
-            : List<String?>.from(json["\u0024read"]!.map((x) => x)),
-        write: json["\u0024write"] == null
-            ? []
-            : List<String?>.from(json["\u0024write"]!.map((x) => x)),
+        paymentDetails: json["paymentDetails"],
+        read: json["\u0024read"] == null ? [] : List<String?>.from(json["\u0024read"]!.map((x) => x)),
+        write: json["\u0024write"] == null ? [] : List<String?>.from(json["\u0024write"]!.map((x) => x)),
         id: json["\u0024id"],
         createdAt: json["\u0024createdAt"],
         updatedAt: json["\u0024updatedAt"],
@@ -52,10 +50,9 @@ class IncomeModel {
         "date": date,
         "amount": amount,
         "type": type,
-        "\u0024read":
-            read == null ? [] : List<dynamic>.from(read!.map((x) => x)),
-        "\u0024write":
-            write == null ? [] : List<dynamic>.from(write!.map((x) => x)),
+        "paymentDetails": paymentDetails,
+        "\u0024read": read == null ? [] : List<dynamic>.from(read!.map((x) => x)),
+        "\u0024write": write == null ? [] : List<dynamic>.from(write!.map((x) => x)),
         "\u0024id": id,
         "\u0024createdAt": createdAt,
         "\u0024updatedAt": updatedAt,
