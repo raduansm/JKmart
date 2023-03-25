@@ -23,10 +23,16 @@ class IncomeFilterWidget extends GetView<IncomeController> {
             width: 150,
             child: GlobalBottomButton(
               text: index == 0
-                  ? "Vendor"
+                  ? controller.vendorFilterValue.value != null
+                      ? controller.vendors[controller.vendorFilterValue.value!].name ?? "No Name Specified"
+                      : "Vendor"
                   : index == 1
-                      ? "Date"
-                      : "Payment Type",
+                      ? controller.filterDate.value != null
+                          ? DateFormat("dd-MMM-yyyy").format(controller.filterDate.value ?? DateTime.now())
+                          : "Date"
+                      : controller.paymentTypeFilterValue.value != null
+                          ? controller.paymentTypes[controller.paymentTypeFilterValue.value!].name ?? "Name not specified"
+                          : "Payment Type",
               onPressed: () {
                 //Vendor Filter
                 if (index == 0) {
@@ -42,6 +48,7 @@ class IncomeFilterWidget extends GetView<IncomeController> {
                             SizedBox(
                               height: 250,
                               child: CupertinoPicker.builder(
+                                scrollController: FixedExtentScrollController(initialItem: controller.vendorFilterValue.value ?? -1),
                                 childCount: controller.vendors.length,
                                 itemExtent: 25,
                                 backgroundColor: Colors.white,
@@ -59,7 +66,15 @@ class IncomeFilterWidget extends GetView<IncomeController> {
                             ),
                             Row(
                               children: [
-                                Expanded(child: GlobalBottomButton(text: "Reset", onPressed: () {}, isSolidButton: false)),
+                                Expanded(
+                                    child: GlobalBottomButton(
+                                        text: "Reset",
+                                        onPressed: () {
+                                          controller.vendorFilterValue.value = null;
+                                          controller.getIncomes();
+                                          Get.back();
+                                        },
+                                        isSolidButton: false)),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: GlobalBottomButton(
@@ -107,7 +122,15 @@ class IncomeFilterWidget extends GetView<IncomeController> {
                                 const SizedBox(height: 15),
                                 Row(
                                   children: [
-                                    Expanded(child: GlobalBottomButton(text: "Reset", onPressed: () {}, isSolidButton: false)),
+                                    Expanded(
+                                        child: GlobalBottomButton(
+                                            text: "Reset",
+                                            onPressed: () {
+                                              controller.filterDate.value = null;
+                                              controller.getIncomes();
+                                              Get.back();
+                                            },
+                                            isSolidButton: false)),
                                     const SizedBox(width: 10),
                                     Expanded(
                                       child: GlobalBottomButton(
@@ -143,6 +166,7 @@ class IncomeFilterWidget extends GetView<IncomeController> {
                             SizedBox(
                               height: 250,
                               child: CupertinoPicker.builder(
+                                scrollController: FixedExtentScrollController(initialItem: controller.paymentTypeFilterValue.value ?? -1),
                                 childCount: controller.paymentTypes.length,
                                 itemExtent: 25,
                                 backgroundColor: Colors.white,
@@ -160,7 +184,15 @@ class IncomeFilterWidget extends GetView<IncomeController> {
                             ),
                             Row(
                               children: [
-                                Expanded(child: GlobalBottomButton(text: "Reset", onPressed: () {}, isSolidButton: false)),
+                                Expanded(
+                                    child: GlobalBottomButton(
+                                        text: "Reset",
+                                        onPressed: () {
+                                          controller.paymentTypeFilterValue.value = null;
+                                          controller.getIncomes();
+                                          Get.back();
+                                        },
+                                        isSolidButton: false)),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: GlobalBottomButton(
@@ -183,9 +215,41 @@ class IncomeFilterWidget extends GetView<IncomeController> {
                   return;
                 }
               },
-              isSolidButton: true,
-              color: CustomColor.blue2,
-              style: Get.textTheme.headline6,
+              isSolidButton: index == 0
+                  ? controller.vendorFilterValue.value != null
+                      ? true
+                      : false
+                  : index == 1
+                      ? controller.filterDate.value != null
+                          ? true
+                          : false
+                      : controller.paymentTypeFilterValue.value != null
+                          ? true
+                          : false,
+              color: index == 0
+                  ? controller.vendorFilterValue.value != null
+                      ? CustomColor.blue2
+                      : CustomColor.blue2
+                  : index == 1
+                      ? controller.filterDate.value != null
+                          ? CustomColor.blue2
+                          : CustomColor.blue2
+                      : controller.paymentTypeFilterValue.value != null
+                          ? CustomColor.blue2
+                          : CustomColor.blue2,
+              style: Get.textTheme.headline6?.copyWith(
+                color: index == 0
+                    ? controller.vendorFilterValue.value != null
+                        ? CustomColor.white
+                        : CustomColor.blue2
+                    : index == 1
+                        ? controller.filterDate.value != null
+                            ? CustomColor.white
+                            : CustomColor.blue2
+                        : controller.paymentTypeFilterValue.value != null
+                            ? CustomColor.white
+                            : CustomColor.blue2,
+              ),
             ),
           );
         },
