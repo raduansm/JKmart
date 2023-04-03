@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:jkmart/controllers/order_management%20_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/screens/home/widgets/appdrawer.dart';
@@ -14,8 +16,7 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
       backgroundColor: CustomColor.primaryColor,
       drawer: const AppDrawer(),
       body: SafeArea(
-        child: Container(
-            child: ListView(
+        child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           children: [
             const SizedBox(height: 25),
@@ -24,10 +25,17 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
               children: [
                 GestureDetector(
                   onTap: () => Get.back(),
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     radius: 20,
                     backgroundColor: CustomColor.secondaryColor,
-                    child: Image.asset('assets/images/menu.png', scale: 5),
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 2),
+                      child: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: 20,
+                        color: Colors.white60,
+                      ),
+                    ),
                   ),
                 ),
                 const Text(
@@ -55,67 +63,88 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
               ],
             ),
             const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Name',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: CustomColor.secondaryColor,
                   ),
-                  Text(
-                    'Date',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 5),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: CustomColor.secondaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'Name',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                  child: Column(children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "No name entered",
+                            style: Get.textTheme.headline5,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'Sep 23',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: CustomColor.purple,
+                          ),
+                          child: Text(
+                            "Pending",
+                            style: Get.textTheme.subtitle2,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.today,
+                              color: Colors.grey.shade400,
+                              size: 15,
+                            ),
+                            SizedBox(width: 5),
+                            Text(
+                              // DateFormat("dd MMMM yyyy").format(DateTime.tryParse(controller.incomes[index].date ?? "") ?? DateTime.now()),
+                              DateFormat("dd MMMM yyyy").format(DateTime.now()),
+                              style: Get.textTheme.subtitle2!.copyWith(color: Colors.grey.shade400),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                        Row(
+                          children: [
+                            const Icon(
+                              CupertinoIcons.cube_box,
+                              color: Colors.white,
+                              size: 19,
+                            ),
+                            const SizedBox(width: 3),
+                            Text(
+                              // "\$${controller.incomes[index].amount ?? "0"}",
+                              "${23 + index}",
+                              textAlign: TextAlign.right,
+                              style: Get.textTheme.headline4,
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ]),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: 12);
+              },
+              itemCount: 5,
+            )
           ],
-        )),
+        ),
       ),
     );
   }
