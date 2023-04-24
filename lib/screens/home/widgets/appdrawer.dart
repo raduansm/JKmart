@@ -49,7 +49,7 @@ class AppDrawer extends GetView<AuthController> {
                     textData: 'Expense',
                     width: 12,
                     onTap: () {
-                      Get.to(() => const ExpenseScreen(), binding: InitialBinding());
+                      Get.to(() => ExpenseScreen(), binding: InitialBinding());
                     },
                   ),
                 if (controller.currentUser!.name == controller.userTypes[0])
@@ -58,7 +58,8 @@ class AppDrawer extends GetView<AuthController> {
                     textData: 'Lottery',
                     width: 12,
                     onTap: () {
-                      Get.to(() => const LotteryScreen(), binding: InitialBinding());
+                      Get.to(() => const LotteryScreen(),
+                          binding: InitialBinding());
                     },
                   ),
                 if (controller.currentUser!.name != controller.userTypes[2])
@@ -77,7 +78,8 @@ class AppDrawer extends GetView<AuthController> {
                     width: 12,
                     onTap: () {
                       Get.find<AuthController>().getAllUsers();
-                      Get.to(() => const UsersScreen(), binding: InitialBinding());
+                      Get.to(() => const UsersScreen(),
+                          binding: InitialBinding());
                     },
                   ),
                 // drawer_data(

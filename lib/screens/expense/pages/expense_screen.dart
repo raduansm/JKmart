@@ -1,14 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:jkmart/controllers/auth_controller.dart';
 import 'package:jkmart/controllers/expense_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/screens/expense/widgets/add_expense_widget.dart';
+import 'package:jkmart/screens/expense/widgets/expense_filter.dart';
 import 'package:jkmart/screens/home/pages/home_screen.dart';
 import 'package:jkmart/screens/home/widgets/appdrawer.dart';
 
 class ExpenseScreen extends GetView<ExpenseController> {
-  const ExpenseScreen({Key? key}) : super(key: key);
+  ExpenseScreen({Key? key}) : super(key: key);
+
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,176 +29,121 @@ class ExpenseScreen extends GetView<ExpenseController> {
                 : ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     children: [
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () => Get.back(),
-                            child: CircleAvatar(
-                              radius: 20,
-                              backgroundColor: CustomColor.secondaryColor,
-                              child: Image.asset('assets/images/menu.png',
-                                  scale: 5),
-                            ),
-                          ),
-                          Text(
-                            'Expense',
-                            style: Get.textTheme.headline2,
-                          ),
-                          const AddExpense(),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Container(
-                        height: 180,
-                        width: 180,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: CustomColor.secondaryColor, width: 10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Total Expense',
-                              style: Get.textTheme.headline4,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              '1000 \$',
-                              style: Get.textTheme.headline4,
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 15,
-                                      width: 15,
-                                      color: Colors.red,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      "Pull tab payout",
-                                      style: Get.textTheme.headline5,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 15,
-                                      width: 15,
-                                      color: Colors.blue,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      "Pull tab payout",
-                                      style: Get.textTheme.headline5,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
+                        const SizedBox(height: 20),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Name',
-                              style: Get.textTheme.headline5,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 30),
-                              child: Text(
-                                'Date',
-                                style: Get.textTheme.headline5,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 0),
-                              child: Text(
-                                'Amount',
-                                style: Get.textTheme.headline5,
+                            GestureDetector(
+                              onTap: () => Get.back(),
+                              child: const CircleAvatar(
+                                radius: 20,
+                                backgroundColor: CustomColor.secondaryColor,
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 2),
+                                  child: Icon(
+                                    Icons.arrow_back_ios_new_rounded,
+                                    size: 20,
+                                    color: Colors.white60,
+                                  ),
+                                ),
                               ),
                             ),
                             Text(
-                              'Type',
-                              style: Get.textTheme.headline5,
+                              'Expenses',
+                              style: Get.textTheme.headline2,
                             ),
+                            authController.currentUser!.name ==
+                                    authController.userTypes[0]
+                                ? const AddExpense()
+                                : const SizedBox(height: 20, width: 20),
                           ],
                         ),
-                      ),
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return Container(
-                            // height: 40,
-                            decoration: BoxDecoration(
-                              color: CustomColor.secondaryColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15.0, right: 15.0),
-                              child: Row(
-                                // mainAxisAlignment:
-                                //     MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      controller.expenses[index].name!,
-                                      // "REDWAN KHONDOKAR SAHA ALI RAHMAN",
-                                      style: Get.textTheme.subtitle1,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      "13-02-22",
-                                      style: Get.textTheme.subtitle1,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      controller.expenses[index].amount!,
-                                      style: Get.textTheme.subtitle1,
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 15,
-                                    width: 15,
-                                    color: Colors.red,
-                                  ),
-                                ],
+                        const SizedBox(height: 20),
+                        const ExpenseFilterWidget(),
+                        const SizedBox(height: 20),
+                        ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: CustomColor.secondaryColor,
                               ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(height: 5);
-                        },
-                        itemCount: controller.expenses.length,
-                      ),
-                    ],
-                  ),
+                              child: Column(children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        controller
+                                                .generatedVendors[index].name ??
+                                            "No name entered",
+                                        style: Get.textTheme.headline5,
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 3),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: CustomColor.primaryColor,
+                                      ),
+                                      child: Text(
+                                        controller.generatedExpenseTypes[index]
+                                                .name ??
+                                            "Undefined",
+                                        style: Get.textTheme.subtitle2,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.today,
+                                          color: Colors.grey.shade400,
+                                          size: 15,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          DateFormat("dd MMMM yyyy").format(
+                                              DateTime.tryParse(controller
+                                                          .expenses[index]
+                                                          .date ??
+                                                      "") ??
+                                                  DateTime.now()),
+                                          style: Get.textTheme.subtitle2!
+                                              .copyWith(
+                                                  color: Colors.grey.shade400),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      "\$${controller.expenses[index].amount ?? "0"}",
+                                      textAlign: TextAlign.right,
+                                      style: Get.textTheme.headline4,
+                                    ),
+                                  ],
+                                )
+                              ]),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: 12);
+                          },
+                          itemCount: controller.expenses.length,
+                        ),
+                      ]),
           ),
         ));
   }

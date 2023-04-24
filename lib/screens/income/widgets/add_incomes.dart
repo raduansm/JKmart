@@ -18,12 +18,14 @@ class AddIncome extends GetView<IncomeController> {
     return GestureDetector(
       onTap: () {
         if (controller.vendors.isEmpty) {
-          Get.snackbar("No Vendors Available", "You can not add any income now");
+          Get.snackbar(
+              "No Vendors Available", "You can not add any income now");
           return;
         }
 
         if (controller.paymentTypes.isEmpty) {
-          Get.snackbar("No Payment Types Available", "You can not add any income now");
+          Get.snackbar(
+              "No Payment Types Available", "You can not add any income now");
           return;
         }
 
@@ -68,39 +70,49 @@ class AddIncome extends GetView<IncomeController> {
                               child: GestureDetector(
                                 onTap: () {
                                   showCupertinoModalPopup(
-                                      context: context,
-                                      builder: (context) {
-                                        return SizedBox(
-                                          height: 250,
-                                          child: CupertinoPicker.builder(
-                                            childCount: controller.vendors.length,
-                                            itemExtent: 25,
-                                            backgroundColor: Colors.white,
-                                            onSelectedItemChanged: (index) {
-                                              controller.selectedVendorIndex.value = index;
-                                            },
-                                            itemBuilder: (context, index) {
-                                              return Text(
-                                                controller.vendors[index].name ?? "No name specified",
-                                                textAlign: TextAlign.center,
-                                                style: Get.textTheme.headline4?.copyWith(color: Colors.black),
-                                              );
-                                            },
-                                          ),
-                                        );
-                                      });
+                                    context: context,
+                                    builder: (context) {
+                                      return SizedBox(
+                                        height: 250,
+                                        child: CupertinoPicker.builder(
+                                          childCount: controller.vendors.length,
+                                          itemExtent: 25,
+                                          backgroundColor: Colors.white,
+                                          onSelectedItemChanged: (index) {
+                                            controller.selectedVendorIndex
+                                                .value = index;
+                                          },
+                                          itemBuilder: (context, index) {
+                                            return Text(
+                                              controller.vendors[index].name ??
+                                                  "No name specified",
+                                              textAlign: TextAlign.center,
+                                              style: Get.textTheme.headline4
+                                                  ?.copyWith(
+                                                      color: Colors.black),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    },
+                                  );
                                 },
                                 child: Container(
                                   // height: 45,
                                   alignment: Alignment.center,
-                                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 3),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 3),
                                   decoration: BoxDecoration(
                                     color: CustomColor.grey3,
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Text(
                                     // "Bear Grylls is a man of steel",
-                                    controller.vendors[controller.selectedVendorIndex.value].name ?? "",
+                                    controller
+                                            .vendors[controller
+                                                .selectedVendorIndex.value]
+                                            .name ??
+                                        "",
                                     textAlign: TextAlign.center,
                                     overflow: TextOverflow.visible,
                                     style: Get.textTheme.headline4,
@@ -144,7 +156,8 @@ class AddIncome extends GetView<IncomeController> {
                                   controller.updateDate(date);
                                 },
                                 initialDateTime: controller.selectedDate.value,
-                                label: DateFormat("dd-MMM-yy").format(controller.selectedDate.value),
+                                label: DateFormat("dd-MMM-yy")
+                                    .format(controller.selectedDate.value),
                               ),
                             ),
                           ),
@@ -169,17 +182,23 @@ class AddIncome extends GetView<IncomeController> {
                                         return SizedBox(
                                           height: 250,
                                           child: CupertinoPicker.builder(
-                                            childCount: controller.paymentTypes.length,
+                                            childCount:
+                                                controller.paymentTypes.length,
                                             itemExtent: 25,
                                             backgroundColor: Colors.white,
                                             onSelectedItemChanged: (index) {
-                                              controller.selectedPaymentType.value = index;
+                                              controller.selectedPaymentType
+                                                  .value = index;
                                             },
                                             itemBuilder: (context, index) {
                                               return Text(
-                                                controller.paymentTypes[index].name ?? "No name specified",
+                                                controller.paymentTypes[index]
+                                                        .name ??
+                                                    "No name specified",
                                                 textAlign: TextAlign.center,
-                                                style: Get.textTheme.headline4?.copyWith(color: Colors.black),
+                                                style: Get.textTheme.headline4
+                                                    ?.copyWith(
+                                                        color: Colors.black),
                                               );
                                             },
                                           ),
@@ -189,14 +208,19 @@ class AddIncome extends GetView<IncomeController> {
                                 child: Container(
                                   // height: 45,
                                   alignment: Alignment.center,
-                                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 3),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 3),
                                   decoration: BoxDecoration(
                                     color: CustomColor.grey3,
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Text(
                                     // "Bear Grylls is a man of steel",
-                                    controller.paymentTypes[controller.selectedPaymentType.value].name ?? "",
+                                    controller
+                                            .paymentTypes[controller
+                                                .selectedPaymentType.value]
+                                            .name ??
+                                        "",
                                     textAlign: TextAlign.center,
                                     overflow: TextOverflow.visible,
                                     style: Get.textTheme.headline4,
@@ -214,13 +238,16 @@ class AddIncome extends GetView<IncomeController> {
                           //   style: Get.textTheme.headline4,
                           // ),
                           RichText(
-                            text: TextSpan(text: "Payment Details ", style: Get.textTheme.headline4, children: [
-                              TextSpan(
-                                text: "(Optional)",
-                                style: Get.textTheme.subtitle2,
-                              ),
-                              const TextSpan(text: " :"),
-                            ]),
+                            text: TextSpan(
+                                text: "Payment Details ",
+                                style: Get.textTheme.headline4,
+                                children: [
+                                  TextSpan(
+                                    text: "(Optional)",
+                                    style: Get.textTheme.subtitle2,
+                                  ),
+                                  const TextSpan(text: " :"),
+                                ]),
                           ),
                           const SizedBox(
                             height: 3,

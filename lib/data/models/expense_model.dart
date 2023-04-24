@@ -1,15 +1,17 @@
 import 'dart:convert';
 
-ExpenseModel? expenseModelFromJson(String str) =>
+ExpenseModel expenseModelFromJson(String str) =>
     ExpenseModel.fromJson(json.decode(str));
 
-String expenseModelToJson(ExpenseModel? data) => json.encode(data!.toJson());
+String expenseModelToJson(ExpenseModel data) => json.encode(data.toJson());
 
 class ExpenseModel {
   ExpenseModel({
-    this.name,
     this.date,
     this.amount,
+    this.vendor,
+    this.expenseDetails,
+    this.type,
     this.read,
     this.write,
     this.id,
@@ -18,26 +20,30 @@ class ExpenseModel {
     this.collection,
   });
 
-  String? name;
   String? date;
   String? amount;
-  List<dynamic>? read;
-  List<dynamic>? write;
+  String? vendor;
+  String? expenseDetails;
+  String? type;
+  List<String?>? read;
+  List<String?>? write;
   String? id;
   int? createdAt;
   int? updatedAt;
   String? collection;
 
   factory ExpenseModel.fromJson(Map<String, dynamic> json) => ExpenseModel(
-        name: json["name"],
         date: json["date"],
         amount: json["amount"],
+        vendor: json["vendor"],
+        expenseDetails: json["expenseDetails"],
+        type: json["type"],
         read: json["\u0024read"] == null
             ? []
-            : List<dynamic>.from(json["\u0024read"]!.map((x) => x)),
+            : List<String?>.from(json["\u0024read"]!.map((x) => x)),
         write: json["\u0024write"] == null
             ? []
-            : List<dynamic>.from(json["\u0024write"]!.map((x) => x)),
+            : List<String?>.from(json["\u0024write"]!.map((x) => x)),
         id: json["\u0024id"],
         createdAt: json["\u0024createdAt"],
         updatedAt: json["\u0024updatedAt"],
@@ -45,13 +51,13 @@ class ExpenseModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
         "date": date,
         "amount": amount,
-        "\u0024read":
-            read == null ? [] : List<dynamic>.from(read!.map((x) => x)),
-        "\u0024write":
-            write == null ? [] : List<dynamic>.from(write!.map((x) => x)),
+        "vendor": vendor,
+        "expenseDetails": expenseDetails,
+        "type": type,
+        "\u0024read": List<dynamic>.from(read!.map((x) => x)),
+        "\u0024write": List<dynamic>.from(write!.map((x) => x)),
         "\u0024id": id,
         "\u0024createdAt": createdAt,
         "\u0024updatedAt": updatedAt,
