@@ -106,23 +106,15 @@ class IncomeController extends GetxController {
   Future<void> getIncomes() async {
     isLoading.value = true;
 
-    if (vendorFilterValue.value == null &&
-        filterDate.value == null &&
-        paymentTypeFilterValue.value == null) {
+    if (vendorFilterValue.value == null && filterDate.value == null && paymentTypeFilterValue.value == null) {
       await getVendors();
       await getPaymentTypes();
     }
 
     final result = await repository.getIncomes(
-      vendorQuery: vendorFilterValue.value != null
-          ? vendors[vendorFilterValue.value!].id
-          : null,
-      dateQuery: filterDate.value != null
-          ? DateUtils.dateOnly(filterDate.value!).toIso8601String()
-          : null,
-      paymentTypeQuery: paymentTypeFilterValue.value != null
-          ? paymentTypes[paymentTypeFilterValue.value!].id
-          : null,
+      vendorQuery: vendorFilterValue.value != null ? vendors[vendorFilterValue.value!].id : null,
+      dateQuery: filterDate.value != null ? DateUtils.dateOnly(filterDate.value!).toIso8601String() : null,
+      paymentTypeQuery: paymentTypeFilterValue.value != null ? paymentTypes[paymentTypeFilterValue.value!].id : null,
     );
 
     result.fold((l) {
@@ -162,12 +154,7 @@ class IncomeController extends GetxController {
 
     isAddingIncome.value = true;
 
-    final result = await repository.addIncome(
-        vendor: vendors[selectedVendorIndex.value].id!,
-        date: DateUtils.dateOnly(selectedDate.value).toIso8601String(),
-        amount: amountController.text,
-        paymentDetails: paymentDetailsController.text,
-        type: paymentTypes[selectedPaymentType.value].id!);
+    final result = await repository.addIncome(vendor: vendors[selectedVendorIndex.value].id!, date: DateUtils.dateOnly(selectedDate.value).toIso8601String(), amount: amountController.text, paymentDetails: paymentDetailsController.text, type: paymentTypes[selectedPaymentType.value].id!);
 
     result.fold((l) {
       Get.back();

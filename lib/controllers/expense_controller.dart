@@ -141,23 +141,15 @@ class ExpenseController extends GetxController {
   Future<void> getExpenses() async {
     isLoading.value = true;
 
-    if (vendorFilterValue.value == null &&
-        filterDate.value == null &&
-        expenseTypeFilterValue.value == null) {
+    if (vendorFilterValue.value == null && filterDate.value == null && expenseTypeFilterValue.value == null) {
       await getVendors();
       await getPaymentTypes();
     }
 
     final result = await repository.getExpenses(
-      vendorQuery: vendorFilterValue.value != null
-          ? vendors[vendorFilterValue.value!].id
-          : null,
-      dateQuery: filterDate.value != null
-          ? DateUtils.dateOnly(filterDate.value!).toIso8601String()
-          : null,
-      expenseTypeQuery: expenseTypeFilterValue.value != null
-          ? expenseTypes[expenseTypeFilterValue.value!].id
-          : null,
+      vendorQuery: vendorFilterValue.value != null ? vendors[vendorFilterValue.value!].id : null,
+      dateQuery: filterDate.value != null ? DateUtils.dateOnly(filterDate.value!).toIso8601String() : null,
+      expenseTypeQuery: expenseTypeFilterValue.value != null ? expenseTypes[expenseTypeFilterValue.value!].id : null,
     );
 
     result.fold((l) {
@@ -197,12 +189,7 @@ class ExpenseController extends GetxController {
 
     isAddingExpense.value = true;
 
-    final result = await repository.addExpense(
-        vendor: vendors[selectedVendorIndex.value].id!,
-        date: DateUtils.dateOnly(selectedDate.value).toIso8601String(),
-        amount: amountController.text,
-        expenseDetails: expenseDetailsController.text,
-        type: expenseTypes[selectedExpenseType.value].id!);
+    final result = await repository.addExpense(vendor: vendors[selectedVendorIndex.value].id!, date: DateUtils.dateOnly(selectedDate.value).toIso8601String(), amount: amountController.text, expenseDetails: expenseDetailsController.text, type: expenseTypes[selectedExpenseType.value].id!);
 
     result.fold((l) {
       Get.back();

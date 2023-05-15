@@ -17,29 +17,19 @@ class ExpenseDataSource {
 
   final _collectionId = '6362875432b3fd33c793';
 
-  Future<List<ExpenseModel>> getExpenses(
-      {String? vendorQuery,
-      String? dateQuery,
-      String? expenseTypeQuery}) async {
+  Future<List<ExpenseModel>> getExpenses({String? vendorQuery, String? dateQuery, String? expenseTypeQuery}) async {
     final response = await db.listDocuments(
       collectionId: _collectionId,
       orderTypes: ["DESC"],
       orderAttributes: ["date"],
       queries: [
-        vendorQuery != null
-            ? Query.equal("vendor", vendorQuery)
-            : Query.notEqual("vendor", ""),
-        dateQuery != null
-            ? Query.equal("date", dateQuery)
-            : Query.notEqual("date", ""),
-        expenseTypeQuery != null
-            ? Query.equal("type", expenseTypeQuery)
-            : Query.notEqual("type", ""),
+        vendorQuery != null ? Query.equal("vendor", vendorQuery) : Query.notEqual("vendor", ""),
+        dateQuery != null ? Query.equal("date", dateQuery) : Query.notEqual("date", ""),
+        expenseTypeQuery != null ? Query.equal("type", expenseTypeQuery) : Query.notEqual("type", ""),
       ],
     );
 
-    final expenses = List<ExpenseModel>.from(
-        response.documents.map((e) => ExpenseModel.fromJson(e.data)));
+    final expenses = List<ExpenseModel>.from(response.documents.map((e) => ExpenseModel.fromJson(e.data)));
 
     return expenses;
   }
@@ -47,28 +37,20 @@ class ExpenseDataSource {
   Future<List<VendorModel>> getVendors() async {
     final response = await db.listDocuments(collectionId: _vendorCollectionId);
 
-    final vendors = List<VendorModel>.from(
-        response.documents.map((e) => VendorModel.fromJson(e.data)));
+    final vendors = List<VendorModel>.from(response.documents.map((e) => VendorModel.fromJson(e.data)));
 
     return vendors;
   }
 
   Future<List<ExpenseTypeModel>> getExpenseTypes() async {
-    final response =
-        await db.listDocuments(collectionId: _expenseTypeCollectionId);
+    final response = await db.listDocuments(collectionId: _expenseTypeCollectionId);
 
-    final expenseTypes = List<ExpenseTypeModel>.from(
-        response.documents.map((e) => ExpenseTypeModel.fromJson(e.data)));
+    final expenseTypes = List<ExpenseTypeModel>.from(response.documents.map((e) => ExpenseTypeModel.fromJson(e.data)));
 
     return expenseTypes;
   }
 
-  Future<void> addExpense(
-      {required String vendor,
-      required String amount,
-      required String date,
-      required String type,
-      required String expenseDetails}) async {
+  Future<void> addExpense({required String vendor, required String amount, required String date, required String type, required String expenseDetails}) async {
     final ExpenseModel payload = ExpenseModel(
       vendor: vendor,
       amount: amount,
@@ -77,9 +59,6 @@ class ExpenseDataSource {
       expenseDetails: expenseDetails,
     );
 
-    await db.createDocument(
-        collectionId: _collectionId,
-        documentId: _uniqueId,
-        data: payload.toJson());
+    await db.createDocument(collectionId: _collectionId, documentId: _uniqueId, data: payload.toJson());
   }
 }
