@@ -256,7 +256,6 @@ class AddExpense extends GetView<ExpenseController> {
                           GlobalTextField(
                             maxLines: 2,
                             textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
                             controller: controller.expenseDetailsController,
                           ),
                           const SizedBox(

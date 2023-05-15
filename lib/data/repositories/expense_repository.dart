@@ -17,10 +17,16 @@ class ExpenseRepository {
 
   ExpenseRepository({required this.dataSource, required this.networkInfo});
 
-  Future<Either<Failure, List<ExpenseModel>>> getExpenses({String? vendorQuery, String? dateQuery, String? expenseTypeQuery}) async {
+  Future<Either<Failure, List<ExpenseModel>>> getExpenses(
+      {String? vendorQuery,
+      String? dateQuery,
+      String? expenseTypeQuery}) async {
     if (await networkInfo.isConnected) {
       try {
-        final expenses = await dataSource.getExpenses(vendorQuery: vendorQuery, dateQuery: dateQuery, expenseTypeQuery: expenseTypeQuery);
+        final expenses = await dataSource.getExpenses(
+            vendorQuery: vendorQuery,
+            dateQuery: dateQuery,
+            expenseTypeQuery: expenseTypeQuery);
         return Right(expenses);
       } on AppwriteException catch (e) {
         print(e.message);
@@ -68,7 +74,12 @@ class ExpenseRepository {
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        await dataSource.addExpense(vendor: vendor, amount: amount, date: date, expenseDetails: "test", type: '6414be5ddca79142ef31');
+        await dataSource.addExpense(
+            vendor: vendor,
+            amount: amount,
+            date: date,
+            expenseDetails: expenseDetails,
+            type: type);
 
         return const Right(null);
       } on AppwriteException catch (e) {
