@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/screens/order_management/pages/cart.dart';
@@ -14,6 +15,7 @@ class AddOrderCard extends StatelessWidget {
   // final List<Widget> rowChildren;
 
   const AddOrderCard({
+    super.key,
     required this.title,
     required this.title2,
     required this.title3,
@@ -27,7 +29,7 @@ class AddOrderCard extends StatelessWidget {
       color: CustomColor.secondaryColor,
       elevation: 3,
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -36,10 +38,7 @@ class AddOrderCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: CustomColor.white),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: CustomColor.white),
                 ),
                 Text(
                   title2,
@@ -105,21 +104,15 @@ class AddOrderCard extends StatelessWidget {
                                     color: Colors.yellow,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: const Icon(Icons.remove,
-                                      color: CustomColor.white),
+                                  child: const Icon(Icons.remove, color: CustomColor.white),
                                 ),
-                                const Text('2',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 28,
-                                        color: CustomColor.white)),
+                                const Text('2', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28, color: CustomColor.white)),
                                 Container(
                                     decoration: BoxDecoration(
                                       color: Colors.yellow,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: const Icon(Icons.add,
-                                        color: Colors.white)),
+                                    child: const Icon(Icons.add, color: Colors.white)),
                               ],
                             ),
                             onPressed: () {
@@ -132,7 +125,8 @@ class AddOrderCard extends StatelessWidget {
                           child: const Text('ADD'),
                           onPressed: () {
                             // Handle cancel selection
-                            Get.to(CartScreen());
+                            Get.back();
+                            Fluttertoast.showToast(msg: "Product added in cart");
                           },
                         ),
                       );
@@ -140,8 +134,7 @@ class AddOrderCard extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  padding: const EdgeInsets.only(
-                      left: 8, right: 8, top: 3, bottom: 3),
+                  padding: const EdgeInsets.only(left: 8, right: 8, top: 3, bottom: 3),
                   decoration: BoxDecoration(
                     color: CustomColor.green,
                     borderRadius: BorderRadius.circular(12),

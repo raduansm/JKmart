@@ -27,14 +27,20 @@ class CartScreen extends GetView<OrderManagementController> {
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => Get.to(HomeScreen()),
-                    child: CircleAvatar(
+                    onTap: () => Get.back(),
+                    child: const CircleAvatar(
                       radius: 20,
                       backgroundColor: CustomColor.secondaryColor,
-                      child: Image.asset('assets/images/menu.png', scale: 5),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 8.0),
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white60,
+                        ),
+                      ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   const Text(
                     'Cart',
                     style: TextStyle(
@@ -43,7 +49,7 @@ class CartScreen extends GetView<OrderManagementController> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   GestureDetector(
                     onTap: () {
                       showCupertinoModalPopup(
@@ -53,19 +59,10 @@ class CartScreen extends GetView<OrderManagementController> {
                             actions: [
                               CupertinoActionSheetAction(
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: const [
-                                    Text('Total',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: CustomColor.primaryColor)),
-                                    Text('\$150',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 28,
-                                            color: CustomColor.primaryColor)),
+                                    Text('Total', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: CustomColor.primaryColor)),
+                                    Text('\$150', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28, color: CustomColor.primaryColor)),
                                   ],
                                 ),
                                 onPressed: () {
@@ -77,14 +74,11 @@ class CartScreen extends GetView<OrderManagementController> {
                             cancelButton: CupertinoActionSheetAction(
                               child: const Text(
                                 'Confirm',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24,
-                                    color: CustomColor.primaryColor),
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: CustomColor.primaryColor),
                               ),
                               onPressed: () {
                                 // Handle cancel selection
-                                Get.to(OrderManagementScreen());
+                                Get.to(const OrderManagementScreen());
                               },
                             ),
                           );
@@ -95,9 +89,9 @@ class CartScreen extends GetView<OrderManagementController> {
                       radius: 20,
                       backgroundColor: CustomColor.secondaryColor,
                       child: Icon(
-                        Icons.select_all,
-                        size: 20,
-                        color: Colors.white60,
+                        Icons.done,
+                        size: 25,
+                        color: Colors.green,
                       ),
                     ),
                   ),
@@ -130,7 +124,7 @@ class CartScreen extends GetView<OrderManagementController> {
                     title: 'Mobile',
                     title2: '\$150',
                     title3: '2',
-                    title4: 'Add',
+                    title4: 'Edit',
                     title5: 'Delete',
                     icon: Icons.countertops,
                   ),

@@ -53,8 +53,7 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
                           ),
                           actions: [
                             CupertinoActionSheetAction(
-                              child: Text('Google Inc.',
-                                  style: Get.textTheme.bodyText1),
+                              child: Text('Google Inc.', style: Get.textTheme.bodyText1),
                               onPressed: () {
                                 // Handle Option 1 selection
                                 Get.to(NewOrderScreen());
@@ -76,7 +75,7 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
                     radius: 20,
                     backgroundColor: CustomColor.secondaryColor,
                     child: Icon(
-                      Icons.search,
+                      Icons.add,
                       size: 20,
                       color: Colors.white60,
                     ),

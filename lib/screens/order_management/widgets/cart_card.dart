@@ -28,7 +28,7 @@ class CartCard extends StatelessWidget {
       color: CustomColor.secondaryColor,
       elevation: 3,
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,10 +37,7 @@ class CartCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: CustomColor.white),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: CustomColor.white),
                 ),
                 Text(
                   title2,
@@ -71,8 +68,7 @@ class CartCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.only(
-                        left: 8, right: 8, top: 3, bottom: 3),
+                    padding: const EdgeInsets.only(left: 8, right: 8, top: 3, bottom: 3),
                     decoration: BoxDecoration(
                       color: CustomColor.purple,
                       borderRadius: BorderRadius.circular(12),
@@ -86,10 +82,9 @@ class CartCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 10),
                   Container(
-                    padding: const EdgeInsets.only(
-                        left: 8, right: 8, top: 3, bottom: 3),
+                    padding: const EdgeInsets.only(left: 8, right: 8, top: 3, bottom: 3),
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(12),
