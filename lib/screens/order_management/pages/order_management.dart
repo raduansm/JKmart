@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jkmart/controllers/order_management%20_controller.dart';
 import 'package:jkmart/core/utils/colors.dart';
 import 'package:jkmart/screens/home/widgets/appdrawer.dart';
 import 'package:jkmart/screens/order_management/pages/new_order.dart';
+import 'package:jkmart/screens/order_management/widgets/order_card.dart';
 
 class OrderManagementScreen extends GetView<OrderManagementController> {
   const OrderManagementScreen({Key? key}) : super(key: key);
@@ -40,13 +42,41 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(NewOrderScreen());
+                    // Get.to(NewOrderScreen());
+                    showCupertinoModalPopup(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CupertinoActionSheet(
+                          title: Text(
+                            'Select a Vendor',
+                            style: Get.textTheme.headline4,
+                          ),
+                          actions: [
+                            CupertinoActionSheetAction(
+                              child: Text('Google Inc.',
+                                  style: Get.textTheme.bodyText1),
+                              onPressed: () {
+                                // Handle Option 1 selection
+                                Get.to(NewOrderScreen());
+                              },
+                            ),
+                          ],
+                          cancelButton: CupertinoActionSheetAction(
+                            child: Text('Cancel'),
+                            onPressed: () {
+                              // Handle cancel selection
+                              Navigator.pop(context);
+                            },
+                          ),
+                        );
+                      },
+                    );
                   },
                   child: const CircleAvatar(
                     radius: 20,
                     backgroundColor: CustomColor.secondaryColor,
                     child: Icon(
-                      Icons.add,
+                      Icons.search,
                       size: 20,
                       color: Colors.white60,
                     ),
@@ -55,65 +85,28 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
               ],
             ),
             const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Name',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Date',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 5),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: CustomColor.secondaryColor,
-                  borderRadius: BorderRadius.circular(10),
+            Column(
+              children: const [
+                OrderCard(
+                  title: 'Google Inc.',
+                  title2: 'Pending',
+                  title3: '12/12/2021',
+                  title4: '\$25',
+                  icon: Icons.today,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'Name',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Sep 23',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
+                OrderCard(
+                  title: 'Google Inc.',
+                  title2: 'Copmleted',
+                  title3: '12/12/2021',
+                  title4: '\$75',
+                  icon: Icons.today,
                 ),
-              ),
-            ),
+                // Text(
+                //   'Incomes',
+                //   style: Get.textTheme.subtitle1,
+                // ),
+              ],
+            )
           ],
         )),
       ),

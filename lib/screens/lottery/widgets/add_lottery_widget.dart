@@ -51,7 +51,10 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 50,
                                 child: Text(
                                   "Game:",
-                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const SizedBox(
@@ -66,17 +69,22 @@ class AddLottery extends GetView<LotteryController> {
                                           return SizedBox(
                                             height: 250,
                                             child: CupertinoPicker.builder(
-                                              childCount: controller.games.length,
+                                              childCount:
+                                                  controller.games.length,
                                               itemExtent: 25,
                                               backgroundColor: Colors.white,
                                               onSelectedItemChanged: (index) {
-                                                controller.selectedGameIndex.value = index;
+                                                controller.selectedGameIndex
+                                                    .value = index;
                                               },
                                               itemBuilder: (context, index) {
                                                 return Text(
-                                                  controller.games[index].gameId.toString(),
+                                                  controller.games[index].gameId
+                                                      .toString(),
                                                   textAlign: TextAlign.center,
-                                                  style: Get.textTheme.headline4?.copyWith(color: Colors.black),
+                                                  style: Get.textTheme.headline4
+                                                      ?.copyWith(
+                                                          color: Colors.black),
                                                 );
                                               },
                                             ),
@@ -86,7 +94,8 @@ class AddLottery extends GetView<LotteryController> {
                                   child: Container(
                                     // height: 45,
                                     alignment: Alignment.center,
-                                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 3),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 3),
                                     decoration: BoxDecoration(
                                       color: CustomColor.grey3,
                                       borderRadius: BorderRadius.circular(10),
@@ -117,7 +126,10 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 50,
                                 child: Text(
                                   "Serial:",
-                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const SizedBox(
@@ -125,7 +137,8 @@ class AddLottery extends GetView<LotteryController> {
                               ),
                               Expanded(
                                 child: GlobalTextField(
-                                  validator: controller.addLotteryFieldsValidator,
+                                  validator:
+                                      controller.addLotteryFieldsValidator,
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   controller: controller.serialController,
@@ -147,7 +160,10 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 50,
                                 child: Text(
                                   "Start:",
-                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const SizedBox(
@@ -155,7 +171,8 @@ class AddLottery extends GetView<LotteryController> {
                               ),
                               Flexible(
                                 child: GlobalTextField(
-                                  validator: controller.addLotteryFieldsValidator,
+                                  validator:
+                                      controller.addLotteryFieldsValidator,
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   controller: controller.startController,
@@ -177,7 +194,10 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 50,
                                 child: Text(
                                   "Close:",
-                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const SizedBox(
@@ -185,7 +205,8 @@ class AddLottery extends GetView<LotteryController> {
                               ),
                               Flexible(
                                 child: GlobalTextField(
-                                  validator: controller.addLotteryFieldsValidator,
+                                  validator:
+                                      controller.addLotteryFieldsValidator,
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   controller: controller.closeController,
@@ -207,7 +228,10 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 50,
                                 child: Text(
                                   "Total:",
-                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const SizedBox(
@@ -215,7 +239,8 @@ class AddLottery extends GetView<LotteryController> {
                               ),
                               Expanded(
                                 child: GlobalTextField(
-                                  validator: controller.addLotteryFieldsValidator,
+                                  validator:
+                                      controller.addLotteryFieldsValidator,
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   controller: controller.totalController,
@@ -237,7 +262,10 @@ class AddLottery extends GetView<LotteryController> {
                                 width: 50,
                                 child: Text(
                                   "Date:",
-                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const SizedBox(
@@ -249,8 +277,10 @@ class AddLottery extends GetView<LotteryController> {
                                     onDateChanged: (DateTime date) {
                                       controller.updateDate(date);
                                     },
-                                    initialDateTime: controller.selectedDate.value,
-                                    label: DateFormat("dd-MMM-yy").format(controller.selectedDate.value),
+                                    initialDateTime:
+                                        controller.selectedDate.value,
+                                    label: DateFormat("dd-MMM-yy")
+                                        .format(controller.selectedDate.value),
                                   ),
                                 ),
                               ),
