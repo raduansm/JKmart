@@ -43,16 +43,19 @@ class OrderManagementController extends GetxController {
   int productHave = 0;
   int productNeed = 0;
 
-  OrderState() {
-    _init();
-  }
+  getOrders() async {
+    isLoading.value = true;
 
-  _init() async {
-    client
-        .setEndpoint('http://home.logstacks.com:8080/v1') // Your API Endpoint
-        .setProject('62dc48a91676c0ff925a') // Your project ID
-        .setSelfSigned(); // Remove in production
-    db = Databases(client, databaseId: databaseId);
+    final result = await repository.getOrders();
+
+    result.fold(
+      (l) {
+        Get.snackbar("Error", "Something went wrong");
+      },
+      (r) => orders = r,
+    );
+
+    isLoading.value = false;
   }
 
   // Future<void> getOrders() async {
@@ -95,4 +98,10 @@ class OrderManagementController extends GetxController {
   //     return [];
   //   }
   // }
+
+  @override
+  void onInit() {
+    super.onInit();
+    getOrders();
+  }
 }

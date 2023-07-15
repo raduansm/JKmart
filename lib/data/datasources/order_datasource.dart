@@ -19,8 +19,7 @@ class OrderDataSource {
   }) async {
     final response = await db.listDocuments(collectionId: _collectionId);
 
-    final lotteries = List<OrderModel>.from(
-        response.documents.map((e) => OrderModel.fromJson(e.data)));
+    final lotteries = List<OrderModel>.from(response.documents.map((e) => OrderModel.fromJson(e.data)));
 
     return lotteries;
   }
@@ -28,8 +27,7 @@ class OrderDataSource {
   Future<List<ProductModel>> getProducts() async {
     final response = await db.listDocuments(collectionId: _productCollectionId);
 
-    final List<ProductModel> games = List<ProductModel>.from(
-        response.documents.map((e) => ProductModel.fromJson(e.data)));
+    final List<ProductModel> games = List<ProductModel>.from(response.documents.map((e) => ProductModel.fromJson(e.data)));
 
     return games;
   }
