@@ -47,17 +47,44 @@ class OrderManagementScreen extends GetView<OrderManagementController> {
                       context: context,
                       builder: (BuildContext context) {
                         return CupertinoActionSheet(
+                          actionScrollController:
+                              ScrollController(keepScrollOffset: true),
                           title: Text(
                             'Select a Vendor',
                             style: Get.textTheme.headline4,
                           ),
                           actions: [
-                            CupertinoActionSheetAction(
-                              child: Text('Google Inc.', style: Get.textTheme.bodyText1),
-                              onPressed: () {
-                                // Handle Option 1 selection
-                                Get.to(NewOrderScreen());
-                              },
+                            SizedBox(
+                              height: 500,
+                              child: ListView.separated(
+                                shrinkWrap: true,
+
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(NewOrderScreen());
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: CustomColor.secondaryColor,
+                                      ),
+                                      child: Column(children: [
+                                        Text(
+                                          "Google Inc.",
+                                          style: Get.textTheme.headline4,
+                                        )
+                                      ]),
+                                    ),
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return const SizedBox(height: 10);
+                                },
+                                // itemCount: controller.incomes.length,
+                                itemCount: 50,
+                              ),
                             ),
                           ],
                           cancelButton: CupertinoActionSheetAction(
